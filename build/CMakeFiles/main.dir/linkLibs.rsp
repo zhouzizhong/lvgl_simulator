@@ -1,1 +1,0 @@
- lib/liblvgl.a lib/liblvgl_examples.a lib/liblvgl_demos.a lib/liblvgl_thorvg.a -L/opt/local/x86_64-w64-mingw32/lib  -lmingw32 -lSDL2main -lSDL2 -mwindows -lm -lpthread lib/liblvgl.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

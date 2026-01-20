@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"D:/work/lvgl_simulator/build/cmake_install.cmake",
-		"D:/work/lvgl_simulator/build/lvgl/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
