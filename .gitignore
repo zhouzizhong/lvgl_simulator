@@ -1,0 +1,50 @@
+# Build directory
+/build/
+
+# Bin directory
+/bin/
+
+# .vscode directory
+/.vscode/
+
+# Compiled binary files
+*.exe
+*.out
+*.app
+*.elf
+*.bin
+*.a
+*.so
+*.dll
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# IDE files
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+*.txt
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Package manager files
+*.zip
+*.tar.gz
+*.rar

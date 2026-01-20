@@ -12,6 +12,7 @@
 #include "gui_guider.h"
 #include "custom.h"
 #include "widgets_init.h"
+#include "events_init.h"
 
 #include <stdio.h>
 #include <string.h>
