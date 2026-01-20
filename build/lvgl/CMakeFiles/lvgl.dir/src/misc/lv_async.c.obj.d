@@ -1,0 +1,36 @@
+lvgl/CMakeFiles/lvgl.dir/src/misc/lv_async.c.obj: \
+ D:\work\lvgl_simulator\lvgl\src\misc\lv_async.c \
+ D:\work\lvgl_simulator\lvgl\src\misc\lv_async.h \
+ D:\work\lvgl_simulator\lvgl\src\misc\lv_types.h \
+ D:/work/lvgl_simulator/lvgl/src/lv_conf_internal.h \
+ D:/work/lvgl_simulator/lvgl/src/lv_conf_kconfig.h \
+ D:/work/lvgl_simulator/lv_conf.h \
+ C:/devtools/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/stdint.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/corecrt.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/devtools/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/stddef.h \
+ C:/devtools/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdbool.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/inttypes.h \
+ C:/devtools/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
+ C:/devtools/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/limits.h \
+ C:/devtools/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/stdarg.h \
+ C:/devtools/mingw64/x86_64-w64-mingw32/include/_mingw_stdarg.h \
+ D:\work\lvgl_simulator\lvgl\src\misc\lv_timer_private.h \
+ D:\work\lvgl_simulator\lvgl\src\misc\lv_timer.h \
+ D:/work/lvgl_simulator/lvgl/src/tick/lv_tick.h \
+ D:/work/lvgl_simulator/lvgl/src/lv_conf_internal.h \
+ D:/work/lvgl_simulator/lvgl/src/misc/lv_types.h \
+ D:\work\lvgl_simulator\lvgl\src\misc\lv_ll.h \
+ D:/work/lvgl_simulator/lvgl/src/stdlib/lv_mem.h \
+ D:/work/lvgl_simulator/lvgl/src/lv_conf_internal.h \
+ D:/work/lvgl_simulator/lvgl/src/stdlib/lv_string.h \
+ D:/work/lvgl_simulator/lvgl/src/misc/lv_types.h

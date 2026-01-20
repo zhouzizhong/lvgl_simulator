@@ -1,0 +1,21 @@
+{
+    "cmake.generator": "MinGW Makefiles",
+    "files.associations": {
+        "errno.h": "c",
+        "id3v2lib.h": "c",
+        "string.h": "c",
+        "widgets_init.h": "c",
+        "stdlib.h": "c",
+        "dirent.h": "c",
+        "unistd.h": "c",
+        "stat.h": "c",
+        "limits.h": "c",
+        "time.h": "c",
+        "ctype.h": "c",
+        "events_init.h": "c",
+        "gui_guider.h": "c",
+        "lvgl.h": "c",
+        "lv_examples.h": "c",
+        "lv_demos.h": "c"
+    }
+}

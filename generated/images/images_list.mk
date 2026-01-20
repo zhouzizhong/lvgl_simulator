@@ -1,0 +1,1 @@
+GEN_CSRCS += _startup_page_RGB565A8_240x320.c _today_listening_icon_RGB565A8_82x70.c _play_button2_RGB565A8_34x34.c _play_button3_RGB565A8_40x40.c _pause_button3_RGB565A8_40x40.c _music_cover_example_RGB565A8_36x36.c
