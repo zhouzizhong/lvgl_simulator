@@ -227,6 +227,7 @@ extern "C" {
     extern int g_firmware_update_progress;
     extern bool is_updating;                // 更新状态事件：0=未更新，1=正在更新
     extern bool is_latest_version;          // 是否已是最新版本
+    extern bool is_logged_in;               // 是否已登录
 
     /* 编码器控制分组 */
     extern lv_group_t* today_listening_group;

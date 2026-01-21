@@ -155,4 +155,6 @@ void setup_scr_bt_connect_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->bt_connect_page);
 
+    //Init events for screen.
+    events_init_bt_connect_page(ui);
 }

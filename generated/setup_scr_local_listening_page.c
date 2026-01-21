@@ -102,4 +102,6 @@ void setup_scr_local_listening_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->local_listening_page);
 
+    //Init events for screen.
+    events_init_local_listening_page(ui);
 }

@@ -279,4 +279,6 @@ void setup_scr_local_audio_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->local_audio_page);
 
+    //Init events for screen.
+    events_init_local_audio_page(ui);
 }

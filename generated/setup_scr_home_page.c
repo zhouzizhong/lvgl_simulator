@@ -28,6 +28,45 @@ void setup_scr_home_page(lv_ui *ui)
     lv_obj_set_style_bg_color(ui->home_page, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->home_page, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
 
+    //Write codes home_page_status_bar
+    ui->home_page_status_bar = lv_obj_create(ui->home_page);
+    lv_obj_set_pos(ui->home_page_status_bar, 0, 0);
+    lv_obj_set_size(ui->home_page_status_bar, 240, 64);
+    lv_obj_set_scrollbar_mode(ui->home_page_status_bar, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for home_page_status_bar, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes home_page_main_title
+    ui->home_page_main_title = lv_label_create(ui->home_page_status_bar);
+    lv_obj_set_pos(ui->home_page_main_title, 16, 26);
+    lv_obj_set_size(ui->home_page_main_title, 48, 30);
+    lv_label_set_text(ui->home_page_main_title, "首页");
+    lv_label_set_long_mode(ui->home_page_main_title, LV_LABEL_LONG_WRAP);
+
+    //Write style for home_page_main_title, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->home_page_main_title, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->home_page_main_title, &lv_font_PingFangSC_Medium_24, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->home_page_main_title, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->home_page_main_title, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->home_page_main_title, 4, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes home_page_subpage_entry
     ui->home_page_subpage_entry = lv_obj_create(ui->home_page);
     lv_obj_set_pos(ui->home_page_subpage_entry, 0, 64);
@@ -1202,45 +1241,6 @@ void setup_scr_home_page(lv_ui *ui)
     lv_obj_set_style_image_recolor_opa(ui->home_page_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_image_opa(ui->home_page_music_cover, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes home_page_status_bar
-    ui->home_page_status_bar = lv_obj_create(ui->home_page);
-    lv_obj_set_pos(ui->home_page_status_bar, 0, 0);
-    lv_obj_set_size(ui->home_page_status_bar, 240, 64);
-    lv_obj_set_scrollbar_mode(ui->home_page_status_bar, LV_SCROLLBAR_MODE_OFF);
-
-    //Write style for home_page_status_bar, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_left(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->home_page_status_bar, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write codes home_page_main_title
-    ui->home_page_main_title = lv_label_create(ui->home_page_status_bar);
-    lv_obj_set_pos(ui->home_page_main_title, 16, 26);
-    lv_obj_set_size(ui->home_page_main_title, 48, 30);
-    lv_label_set_text(ui->home_page_main_title, "首页");
-    lv_label_set_long_mode(ui->home_page_main_title, LV_LABEL_LONG_WRAP);
-
-    //Write style for home_page_main_title, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_color(ui->home_page_main_title, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->home_page_main_title, &lv_font_PingFangSC_Medium_24, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->home_page_main_title, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_letter_space(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_line_space(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_align(ui->home_page_main_title, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(ui->home_page_main_title, 4, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_left(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->home_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //The custom code of home_page.
     //子容器初始化
     children[0] = guider_ui.home_page_local_audio_1;
@@ -1323,16 +1323,17 @@ void setup_scr_home_page(lv_ui *ui)
     {
         lv_obj_add_flag(children[i], LV_OBJ_FLAG_SCROLL_ON_FOCUS);
     }
-    // for (int i = 0; i < 13; i++)
-    // {
-    // 	lv_obj_add_style(children[i], &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
-    // }
-    // 添加所有可滚动的子对象到组中
+// lv_group_focus_obj(guider_ui.home_page_today_listening);
+// for (int i = 0; i < 13; i++)
+// {
+// 	lv_obj_add_style(children[i], &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
+// }
+//添加所有可滚动的子对象到组中
     for (int i = 0; i < 13; i++)
     {
         lv_group_add_obj(home_group, children[i]);
     }
-    // 🔥 关键：控制滚动速度和惯性
+// 🔥 关键：控制滚动速度和惯性
     lv_obj_set_style_anim_time(ui->home_page_subpage_entry, 2000, LV_STATE_DEFAULT); // 增加动画时间使滚动变慢
 
     //Update current screen layout.

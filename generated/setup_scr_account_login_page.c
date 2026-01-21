@@ -155,4 +155,6 @@ void setup_scr_account_login_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->account_login_page);
 
+    //Init events for screen.
+    events_init_account_login_page(ui);
 }

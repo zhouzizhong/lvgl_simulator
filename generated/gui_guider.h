@@ -29,6 +29,8 @@ typedef struct
 	lv_obj_t *startup_page_charge_logo;
 	lv_obj_t *home_page;
 	bool home_page_del;
+	lv_obj_t *home_page_status_bar;
+	lv_obj_t *home_page_main_title;
 	lv_obj_t *home_page_subpage_entry;
 	lv_obj_t *home_page_system_settings_1;
 	lv_obj_t *home_page_system_settings_subtitle_1;
@@ -91,8 +93,6 @@ typedef struct
 	lv_obj_t *home_page_song_title;
 	lv_obj_t *home_page_mask_home_cover;
 	lv_obj_t *home_page_music_cover;
-	lv_obj_t *home_page_status_bar;
-	lv_obj_t *home_page_main_title;
 	lv_obj_t *player_page;
 	bool player_page_del;
 	lv_obj_t *player_page_background;
@@ -438,12 +438,12 @@ LV_IMAGE_DECLARE(_child_lock_off_icon_RGB565A8_76x70);
 LV_IMAGE_DECLARE(_storage_full_icon_RGB565A8_76x67);
 LV_IMAGE_DECLARE(_wifi_disconnected_icon_RGB565A8_84x68);
 
-LV_FONT_DECLARE(lv_font_PingFangSC_Regular_14)
+LV_FONT_DECLARE(lv_font_PingFangSC_Medium_24)
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
+LV_FONT_DECLARE(lv_font_PingFangSC_Regular_14)
 LV_FONT_DECLARE(lv_font_FZCuYuan_M03S_18)
 LV_FONT_DECLARE(lv_font_montserratMedium_12)
 LV_FONT_DECLARE(lv_font_PingFangSC_Semibold_16)
-LV_FONT_DECLARE(lv_font_PingFangSC_Medium_24)
 LV_FONT_DECLARE(lv_font_PingFangSC_Semibold_20)
 LV_FONT_DECLARE(lv_font_PingFangSC_Medium_16)
 LV_FONT_DECLARE(lv_font_PingFangSC_Medium_20)

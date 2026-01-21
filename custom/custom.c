@@ -38,6 +38,7 @@ firmware_update_content_t g_firmware_update_content = { 0 };
 int g_firmware_update_progress = 0;
 bool is_updating = false; // 是否正在更新
 bool is_latest_version = true; // 是否已是最新版本
+bool is_logged_in = false; // 是否已登录
 
 /* 编码器控制分组 */
 lv_group_t* today_listening_group = NULL;

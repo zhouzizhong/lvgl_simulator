@@ -299,4 +299,6 @@ void setup_scr_screen_brightness_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->screen_brightness_page);
 
+    //Init events for screen.
+    events_init_screen_brightness_page(ui);
 }

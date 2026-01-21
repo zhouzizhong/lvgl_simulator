@@ -19,6 +19,21 @@ extern "C" {
 void events_init(lv_ui *ui);
 
 void events_init_home_page(lv_ui *ui);
+void events_init_player_page(lv_ui *ui);
+void events_init_today_listening_page(lv_ui *ui);
+void events_init_recently_listening_page(lv_ui *ui);
+void events_init_my_order_page(lv_ui *ui);
+void events_init_local_listening_page(lv_ui *ui);
+void events_init_local_audio_page(lv_ui *ui);
+void events_init_system_settings_page(lv_ui *ui);
+void events_init_account_login_page(lv_ui *ui);
+void events_init_account_management_page(lv_ui *ui);
+void events_init_network_and_bluetooth_page(lv_ui *ui);
+void events_init_screen_brightness_page(lv_ui *ui);
+void events_init_device_information_page(lv_ui *ui);
+void events_init_wifi_connect_page(lv_ui *ui);
+void events_init_bt_connect_page(lv_ui *ui);
+void events_init_pop_page(lv_ui *ui);
 
 #ifdef __cplusplus
 }

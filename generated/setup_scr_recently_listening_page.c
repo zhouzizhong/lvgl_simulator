@@ -249,4 +249,6 @@ void setup_scr_recently_listening_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->recently_listening_page);
 
+    //Init events for screen.
+    events_init_recently_listening_page(ui);
 }

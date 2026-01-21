@@ -155,4 +155,6 @@ void setup_scr_today_listening_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->today_listening_page);
 
+    //Init events for screen.
+    events_init_today_listening_page(ui);
 }

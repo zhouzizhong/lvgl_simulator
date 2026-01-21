@@ -743,4 +743,6 @@ void setup_scr_device_information_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->device_information_page);
 
+    //Init events for screen.
+    events_init_device_information_page(ui);
 }

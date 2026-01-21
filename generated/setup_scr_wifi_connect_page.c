@@ -155,4 +155,6 @@ void setup_scr_wifi_connect_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->wifi_connect_page);
 
+    //Init events for screen.
+    events_init_wifi_connect_page(ui);
 }

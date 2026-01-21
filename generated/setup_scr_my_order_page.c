@@ -155,4 +155,6 @@ void setup_scr_my_order_page(lv_ui *ui)
     //Update current screen layout.
     lv_obj_update_layout(ui->my_order_page);
 
+    //Init events for screen.
+    events_init_my_order_page(ui);
 }
