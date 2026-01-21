@@ -19,12 +19,6 @@
 #include <unistd.h>
 #include "custom.h"
 
-// 歌单滚动控制变量
-static int today_scrolly_bottom_loader = 134;
-static int recently_scrolly_bottom_loader = 134;
-static int my_scrolly_bottom_loader = 134;
-static int local_scrolly_bottom_loader = 134;
-
 static void home_page_subpage_entry_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -101,9 +95,24 @@ static void home_page_subpage_entry_event_handler (lv_event_t *e)
     }
 }
 
+static void home_page_today_listening_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.player_page, guider_ui.player_page_del, &guider_ui.home_page_del, setup_scr_player_page, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_home_page (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->home_page_subpage_entry, home_page_subpage_entry_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->home_page_today_listening, home_page_today_listening_event_handler, LV_EVENT_ALL, ui);
 }
 
 

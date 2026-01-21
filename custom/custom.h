@@ -13,8 +13,6 @@
 extern "C" {
 #endif
 
-#include "gui_guider.h"
-
 /*********************
  *      DEFINES
  *********************/
@@ -281,28 +279,40 @@ extern "C" {
     extern bool today_songlist_load_flag;
     extern bool recently_songlist_load_flag;
     extern bool my_songlist_load_flag;
+    extern int today_scrolly_bottom_loader;
+    extern int recently_scrolly_bottom_loader;
+    extern int my_scrolly_bottom_loader;
+    extern int local_scrolly_bottom_loader;
+
+    /* 三个网络歌单 */
+    extern playlist_t g_today_playlist;  // 今日熏听
+    extern playlist_t g_recent_playlist; // 最近熏听
+    extern playlist_t g_my_playlist;     // 我的听单
 
     void custom_init(lv_ui* ui);
 
-    /* 返回上一页 */
-    bool return_pre_page(lv_ui* ui);
-    /* 初始化页面栈 */
-    void page_stack_init(void);
-    /* 检查页面栈是否为空 */
-    bool page_stack_is_empty(void);
-    /* 检查页面栈是否已满*/
-    bool page_stack_is_full(void);
-    /* 将页面ID压入栈中 */
-    bool page_stack_push(int page_id);
-    /* 从栈中弹出页面ID */
-    bool page_stack_pop(int* page_id);
-    /* 清空页面栈 */
-    void page_stack_clear(void);
-    // /* 加载不同类型的歌曲列表页面 */
-    // void songlist_load(lv_ui* ui, int load_songlist, bool* old_scr_del);
-    // /* 加载系统设置页面 */
-    // void system_settings_page_load(void);
-
+    /* 显示Toast*/
+    void show_toast(const char* message, uint32_t duration_ms);
+    /* 显示音量条*/
+    void show_volume_bar(int volume);
+    /* 显示电池电量显示组件*/
+    void show_battery_display(void);
+    /* 隐藏电池电量显示组件*/
+    void hide_battery_display(void);
+    /* 保存亮度值*/
+    int save_brightness_value(int brightness_level);
+    /* 加载亮度值*/
+    int load_brightness_value(void);
+    /* 应用亮度值到UI*/
+    void apply_brightness_to_ui(lv_ui* ui, int brightness_level);
+    /* 设置硬件亮度 */
+    void apply_brightness_to_hardware(int brightness_level);
+    /* 设置屏幕亮度 */
+    void set_screen_brightness(lv_ui* ui, int brightness_level);
+    /* 开始封面图旋转动画 */
+    void start_music_cover_rotation(lv_ui* ui);
+    /* 停止封面图旋转动画 */
+    void stop_music_cover_rotation(lv_ui* ui);
 #ifdef __cplusplus
 }
 #endif

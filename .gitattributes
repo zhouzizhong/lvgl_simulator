@@ -1,0 +1,14 @@
+# 所有 .c .h .cpp 等源码文件强制用 LF（仓库里存 LF，checkout 时也保持 LF）
+*.c    text eol=lf
+*.h    text eol=lf
+*.cpp  text eol=lf
+*.hpp  text eol=lf
+*.py   text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+# 二进制文件不要转换
+*.bin   binary
+*.png   binary
+*.jpg   binary

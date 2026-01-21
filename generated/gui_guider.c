@@ -74,6 +74,21 @@ void init_scr_del_flag(lv_ui *ui)
 
     ui->startup_page_del = true;
     ui->home_page_del = true;
+    ui->player_page_del = true;
+    ui->today_listening_page_del = true;
+    ui->recently_listening_page_del = true;
+    ui->my_order_page_del = true;
+    ui->local_listening_page_del = true;
+    ui->local_audio_page_del = true;
+    ui->system_settings_page_del = true;
+    ui->account_login_page_del = true;
+    ui->account_management_page_del = true;
+    ui->network_and_bluetooth_page_del = true;
+    ui->screen_brightness_page_del = true;
+    ui->device_information_page_del = true;
+    ui->wifi_connect_page_del = true;
+    ui->bt_connect_page_del = true;
+    ui->pop_page_del = true;
 }
 
 void setup_bottom_layer(void)

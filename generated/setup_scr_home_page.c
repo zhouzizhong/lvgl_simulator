@@ -1323,20 +1323,17 @@ void setup_scr_home_page(lv_ui *ui)
     {
         lv_obj_add_flag(children[i], LV_OBJ_FLAG_SCROLL_ON_FOCUS);
     }
-// for (int i = 0; i < 13; i++)
-// {
-// 	lv_obj_add_style(children[i], &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
-// }
-// 添加所有可滚动的子对象到组中
+    // for (int i = 0; i < 13; i++)
+    // {
+    // 	lv_obj_add_style(children[i], &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
+    // }
+    // 添加所有可滚动的子对象到组中
     for (int i = 0; i < 13; i++)
     {
         lv_group_add_obj(home_group, children[i]);
     }
-// 🔥 关键：控制滚动速度和惯性
+    // 🔥 关键：控制滚动速度和惯性
     lv_obj_set_style_anim_time(ui->home_page_subpage_entry, 2000, LV_STATE_DEFAULT); // 增加动画时间使滚动变慢
-
-
-
 
     //Update current screen layout.
     lv_obj_update_layout(ui->home_page);
