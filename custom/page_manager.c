@@ -196,70 +196,175 @@ bool return_pre_page(lv_ui* ui)
     }
     else if (g_pre_page == HOME_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.home_page_del, setup_scr_home_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.home_page_del, setup_scr_home_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.home_page_del, setup_scr_home_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         update_home_page_content(ui);
     }
     else if (g_pre_page == TODAY_LISTENING_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.today_listening_page, guider_ui.today_listening_page_del, &guider_ui.home_page_del, setup_scr_today_listening_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.today_listening_page, guider_ui.today_listening_page_del, &guider_ui.home_page_del, setup_scr_today_listening_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.today_listening_page, guider_ui.today_listening_page_del, &guider_ui.home_page_del, setup_scr_today_listening_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         update_song_rhythm_icon(&guider_ui, SONGLIST_TODAY, g_current_play_data.song_index);
     }
     else if (g_pre_page == RECENTLY_LISTENING_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.recently_listening_page, guider_ui.home_page_del, &guider_ui.player_page_del, setup_scr_today_listening_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.recently_listening_page, guider_ui.home_page_del, &guider_ui.player_page_del, setup_scr_recently_listening_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.recently_listening_page, guider_ui.home_page_del, &guider_ui.player_page_del, setup_scr_recently_listening_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         update_song_rhythm_icon(&guider_ui, SONGLIST_RECENT, g_current_play_data.song_index);
     }
     else if (g_pre_page == MY_ORDER_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.my_order_page, guider_ui.home_page_del, &guider_ui.player_page_del, setup_scr_today_listening_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.my_order_page, guider_ui.home_page_del, &guider_ui.player_page_del, setup_scr_my_order_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.my_order_page, guider_ui.home_page_del, &guider_ui.player_page_del, setup_scr_my_order_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         update_song_rhythm_icon(&guider_ui, SONGLIST_MY, g_current_play_data.song_index);
     }
     else if (g_pre_page == LOCAL_LISTENING_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.local_listening_page, guider_ui.local_listening_page_del, &guider_ui.home_page_del, setup_scr_account_management_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.local_listening_page, guider_ui.local_listening_page_del, &guider_ui.home_page_del, setup_scr_local_listening_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.local_listening_page, guider_ui.local_listening_page_del, &guider_ui.home_page_del, setup_scr_local_listening_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         update_song_rhythm_icon(&guider_ui, SONGLIST_LOCAL, g_current_play_data.song_index);
     }
     else if (g_pre_page == LOCAL_AUDIO_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.local_audio_page, guider_ui.local_audio_page_del, &guider_ui.home_page_del, setup_scr_local_audio_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.local_audio_page, guider_ui.local_audio_page_del, &guider_ui.home_page_del, setup_scr_local_audio_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.local_audio_page, guider_ui.local_audio_page_del, &guider_ui.home_page_del, setup_scr_local_audio_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == PLAYER_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.player_page, guider_ui.player_page_del, &guider_ui.home_page_del, setup_scr_player_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.player_page, guider_ui.player_page_del, &guider_ui.home_page_del, setup_scr_player_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.player_page, guider_ui.player_page_del, &guider_ui.home_page_del, setup_scr_player_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         update_player_page_content(ui);
         hide_battery_display();
     }
     else if (g_pre_page == DEVICE_INFORMATION_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.device_information_page, guider_ui.device_information_page_del, &guider_ui.home_page_del, setup_scr_device_information_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.device_information_page, guider_ui.device_information_page_del, &guider_ui.home_page_del, setup_scr_device_information_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.device_information_page, guider_ui.device_information_page_del, &guider_ui.home_page_del, setup_scr_device_information_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == SCREEN_BRIGHTNESS_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.screen_brightness_page, guider_ui.screen_brightness_page_del, &guider_ui.home_page_del, setup_scr_screen_brightness_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_brightness_page, guider_ui.screen_brightness_page_del, &guider_ui.home_page_del, setup_scr_screen_brightness_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_brightness_page, guider_ui.screen_brightness_page_del, &guider_ui.home_page_del, setup_scr_screen_brightness_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == SYSTEM_SETTINGS_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.system_settings_page, guider_ui.system_settings_page_del, &guider_ui.home_page_del, setup_scr_system_settings_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.system_settings_page, guider_ui.system_settings_page_del, &guider_ui.home_page_del, setup_scr_system_settings_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.system_settings_page, guider_ui.system_settings_page_del, &guider_ui.home_page_del, setup_scr_system_settings_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == ACCOUNT_LOGIN_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.account_login_page, guider_ui.account_login_page_del, &guider_ui.home_page_del, setup_scr_account_login_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.account_login_page, guider_ui.account_login_page_del, &guider_ui.home_page_del, setup_scr_account_login_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.account_login_page, guider_ui.account_login_page_del, &guider_ui.home_page_del, setup_scr_account_login_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == BT_CONNECT_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.bt_connect_page, guider_ui.bt_connect_page_del, &guider_ui.home_page_del, setup_scr_bt_connect_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.bt_connect_page, guider_ui.bt_connect_page_del, &guider_ui.home_page_del, setup_scr_bt_connect_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.bt_connect_page, guider_ui.bt_connect_page_del, &guider_ui.home_page_del, setup_scr_bt_connect_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == WIFI_CONNECT_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.wifi_connect_page, guider_ui.wifi_connect_page_del, &guider_ui.home_page_del, setup_scr_wifi_connect_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.wifi_connect_page, guider_ui.wifi_connect_page_del, &guider_ui.home_page_del, setup_scr_wifi_connect_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.wifi_connect_page, guider_ui.wifi_connect_page_del, &guider_ui.home_page_del, setup_scr_wifi_connect_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == ACCOUNT_MANAGEMENT_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.account_management_page, guider_ui.account_management_page_del, &guider_ui.home_page_del, setup_scr_account_management_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.account_management_page, guider_ui.account_management_page_del, &guider_ui.home_page_del, setup_scr_account_management_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.account_management_page, guider_ui.account_management_page_del, &guider_ui.home_page_del, setup_scr_account_management_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
     }
     else if (g_pre_page == NETWORK_AND_BLUETOOTH_PAGE)
     {
-        ui_load_scr_animation(&guider_ui, &guider_ui.network_and_bluetooth_page, guider_ui.network_and_bluetooth_page_del, &guider_ui.home_page_del, setup_scr_network_and_bluetooth_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        if (g_current_page == POP_PAGE)
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.network_and_bluetooth_page, guider_ui.network_and_bluetooth_page_del, &guider_ui.home_page_del, setup_scr_network_and_bluetooth_page, POP_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
+        else
+        {
+            ui_load_scr_animation(&guider_ui, &guider_ui.network_and_bluetooth_page, guider_ui.network_and_bluetooth_page_del, &guider_ui.home_page_del, setup_scr_network_and_bluetooth_page, RETURN_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+        }
         if (is_bt_connected)
         {
             lv_label_set_text(ui->network_and_bluetooth_page_bt_pair_up_title, bt_name);
