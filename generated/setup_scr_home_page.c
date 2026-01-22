@@ -1306,6 +1306,7 @@ void setup_scr_home_page(lv_ui *ui)
     lv_obj_remove_flag(ui->home_page_system_settings_subtitle_1, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_remove_flag(ui->home_page_system_settings_title_1, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_remove_flag(ui->home_page_system_settings_icon_1, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->home_page_mask_home_cover, LV_OBJ_FLAG_CLICKABLE);
 
     for (int i = 0; i < 13; i++)
     {

@@ -398,6 +398,14 @@ static void local_playlist_item_click_event_handler(lv_event_t* e) {
             g_cur_localfolder_song_count = user_data->folder->song_count;
 
             // 加载本地歌单界面
+            scan_playlist_add(user_data->folder->folder_path, user_data->folder->folder_name);
+            ui_load_scr_animation(&guider_ui, &guider_ui.local_listening_page, guider_ui.local_listening_page_del, &guider_ui.local_audio_page_del, setup_scr_local_listening_page, NEXT_LOAD_ANIM, LOAD_ANIM_TIME, LOAD_ANIM_DELAY, false, false);
+            page_stack_push(g_current_page);
+            g_current_page = LOCAL_LISTENING_PAGE;
+            lv_label_set_text(user_data->ui->local_listening_page_main_title, g_cur_localfolder_name);
+            lv_obj_clean(user_data->ui->local_listening_page_list);
+            add_songs_to_local_listening(user_data->ui, g_cur_localfolder_song_count);
+            update_song_rhythm_icon(user_data->ui, SONGLIST_LOCAL, g_current_play_data.song_index);
         }
     }
 }
@@ -625,7 +633,8 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
     }
 }
 int scan_musicdir(void) {
-    add_local_folder("local_music_1", 6, "/sdcard/Music");
+    add_local_folder("local_music_1", 1, "/sdcard/Music");
+    is_localsong_exists = 1;
     return 0;
 }
 void scan_playlist_add(const char* playlist_path, const char* playlist_name) {

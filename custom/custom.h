@@ -100,11 +100,11 @@ extern "C" {
         char system_storage[128];    /* 系统文件存储空间 */
         char audio_storage[128];     /* 音频文件存储空间 */
         char cache_storage[128];     /* 缓存文件存储空间 */
-        int  total_storage_int;      /* 总存储空间（单位：字节） */
-        int  free_storage_int;       /* 可用存储空间（单位：字节） */
-        int  system_storage_int;     /* 系统文件存储空间（单位：字节） */
-        int  audio_storage_int;      /* 音频文件存储空间（单位：字节） */
-        int  cache_storage_int;      /* 缓存文件存储空间（单位：字节） */
+        long long  total_storage_int;      /* 总存储空间（单位：字节） */
+        long long  free_storage_int;       /* 可用存储空间（单位：字节） */
+        long long  system_storage_int;     /* 系统文件存储空间（单位：字节） */
+        long long  audio_storage_int;      /* 音频文件存储空间（单位：字节） */
+        long long  cache_storage_int;      /* 缓存文件存储空间（单位：字节） */
 
         /* 版本信息 */
         char software_version[128];  /* 软件版本 */

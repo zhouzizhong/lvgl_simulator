@@ -231,7 +231,10 @@ void setup_scr_network_and_bluetooth_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->network_and_bluetooth_page_left_control_button, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of network_and_bluetooth_page.
-
+    lv_obj_remove_flag(ui->network_and_bluetooth_page_bt_pair_up_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->network_and_bluetooth_page_bt_scan_code_button, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->network_and_bluetooth_page_wifi_pair_up_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->network_and_bluetooth_page_wifi_scan_code_button, LV_OBJ_FLAG_CLICKABLE);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->network_and_bluetooth_page);

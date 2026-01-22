@@ -365,7 +365,36 @@ void setup_scr_system_settings_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->system_settings_page_left_control_button, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of system_settings_page.
+    lv_obj_remove_flag(ui->system_settings_page_account_management_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_account_switching_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_device_information_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_screen_brightness_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_network_and_bluetooth_icon, LV_OBJ_FLAG_CLICKABLE);
 
+    lv_obj_add_style(ui->system_settings_page_device_information, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
+    lv_obj_add_style(ui->system_settings_page_account_management, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
+    lv_obj_add_style(ui->system_settings_page_network_and_bluetooth, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
+    lv_obj_add_style(ui->system_settings_page_screen_brightness, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
+    lv_obj_add_flag(ui->system_settings_page_device_information, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    lv_obj_add_flag(ui->system_settings_page_account_management, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    lv_obj_add_flag(ui->system_settings_page_network_and_bluetooth, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    lv_obj_add_flag(ui->system_settings_page_screen_brightness, LV_OBJ_FLAG_CLICK_FOCUSABLE);
+    lv_obj_add_flag(ui->system_settings_page_device_information, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
+    lv_obj_add_flag(ui->system_settings_page_account_management, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
+    lv_obj_add_flag(ui->system_settings_page_network_and_bluetooth, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
+    lv_obj_add_flag(ui->system_settings_page_screen_brightness, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
+    lv_obj_add_flag(ui->system_settings_page_device_information, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_device_information, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_add_flag(ui->system_settings_page_account_management, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_account_management, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_add_flag(ui->system_settings_page_network_and_bluetooth, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_network_and_bluetooth, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_add_flag(ui->system_settings_page_screen_brightness, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->system_settings_page_screen_brightness, LV_OBJ_FLAG_SCROLLABLE);
+    lv_group_add_obj(system_settings_group, ui->system_settings_page_account_management);
+    lv_group_add_obj(system_settings_group, ui->system_settings_page_network_and_bluetooth);
+    lv_group_add_obj(system_settings_group, ui->system_settings_page_screen_brightness);
+    lv_group_add_obj(system_settings_group, ui->system_settings_page_device_information);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->system_settings_page);

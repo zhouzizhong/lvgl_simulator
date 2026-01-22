@@ -419,11 +419,11 @@ void custom_init(lv_ui *ui)
     strcpy(g_current_device_info.system_storage, "系统文件 5.1GB");
     strcpy(g_current_device_info.audio_storage, "音频 8.8GB");
     strcpy(g_current_device_info.cache_storage, "缓存 1.1GB");
-    g_current_device_info.total_storage_int = 30 * 1024 * 1024 * 1024;
-    g_current_device_info.free_storage_int = 15 * 1024 * 1024 * 1024;
-    g_current_device_info.system_storage_int = 5.1 * 1024 * 1024 * 1024;
-    g_current_device_info.audio_storage_int = 8.8 * 1024 * 1024 * 1024;
-    g_current_device_info.cache_storage_int = 1.1 * 1024 * 1024 * 1024;
+    g_current_device_info.total_storage_int = 30LL * 1024 * 1024 * 1024;
+    g_current_device_info.free_storage_int = 15LL * 1024 * 1024 * 1024;
+    g_current_device_info.system_storage_int = (long long)(5.1 * 1024 * 1024 * 1024);
+    g_current_device_info.audio_storage_int = (long long)(8.8 * 1024 * 1024 * 1024);
+    g_current_device_info.cache_storage_int = (long long)(1.1 * 1024 * 1024 * 1024);
 
     /* 当前用户信息初始化 */
     strcpy(g_current_user_info.user_phone, "default user_phone");
@@ -459,7 +459,7 @@ void custom_init(lv_ui *ui)
     init_battery(ui);
 
     // 正常流程：加载主页
-    ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.startup_page_del, setup_scr_home_page, LV_SCR_LOAD_ANIM_FADE_ON, LOAD_ANIM_TIME, 2000, false, false);
+    ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.startup_page_del, setup_scr_home_page, LV_SCR_LOAD_ANIM_FADE_ON, LOAD_ANIM_TIME, 1000, false, false);
     update_home_page_content(ui);
     g_current_page = HOME_PAGE;
 }
