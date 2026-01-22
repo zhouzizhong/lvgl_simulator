@@ -51,7 +51,7 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_pos(ui->account_management_page_account_validity_period, 12, 50);
     lv_obj_set_size(ui->account_management_page_account_validity_period, 180, 20);
     lv_label_set_text(ui->account_management_page_account_validity_period, "有效期至 2026-12-12");
-    lv_label_set_long_mode(ui->account_management_page_account_validity_period, LV_LABEL_LONG_WRAP);
+    lv_label_set_long_mode(ui->account_management_page_account_validity_period, LV_LABEL_LONG_DOT);
 
     //Write style for account_management_page_account_validity_period, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->account_management_page_account_validity_period, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -72,9 +72,9 @@ void setup_scr_account_management_page(lv_ui *ui)
     //Write codes account_management_page_phone_number
     ui->account_management_page_phone_number = lv_label_create(ui->account_management_page_account_information);
     lv_obj_set_pos(ui->account_management_page_phone_number, 12, 20);
-    lv_obj_set_size(ui->account_management_page_phone_number, 120, 25);
+    lv_obj_set_size(ui->account_management_page_phone_number, 150, 25);
     lv_label_set_text(ui->account_management_page_phone_number, "158****3000");
-    lv_label_set_long_mode(ui->account_management_page_phone_number, LV_LABEL_LONG_WRAP);
+    lv_label_set_long_mode(ui->account_management_page_phone_number, LV_LABEL_LONG_DOT);
 
     //Write style for account_management_page_phone_number, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->account_management_page_phone_number, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -346,7 +346,7 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_radius(ui->account_management_page_sub_account_name_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->account_management_page_sub_account_name_1, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_1, &lv_font_PingFangSC_Semibold_18, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui->account_management_page_sub_account_name_1, 206, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->account_management_page_sub_account_name_1, 203, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->account_management_page_sub_account_name_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->account_management_page_sub_account_name_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_align(ui->account_management_page_sub_account_name_1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -405,7 +405,11 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->account_management_page_ic_download_done_icon_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of account_management_page.
-
+    lv_obj_set_style_text_font(ui->account_management_page_account_validity_period, &lv_font_MyPingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->account_management_page_phone_number, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_3, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_2, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_1, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->account_management_page);

@@ -294,7 +294,8 @@ void setup_scr_screen_brightness_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->screen_brightness_page_left_control_button, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of screen_brightness_page.
-
+    lv_obj_remove_flag(ui->screen_brightness_page_brightness_dowm, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->screen_brightness_page_brightness_up, LV_OBJ_FLAG_CLICKABLE);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->screen_brightness_page);

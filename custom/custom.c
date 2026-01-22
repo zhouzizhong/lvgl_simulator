@@ -215,7 +215,7 @@ static bool init_toast_volume_bar(void)
     lv_obj_set_style_border_width(g_toast_label, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_radius(g_toast_label, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(g_toast_label, lv_color_hex(0xffffff), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(g_toast_label, &lv_font_PingFangSC_Semibold_16, 0);
+    lv_obj_set_style_text_font(g_toast_label, &lv_font_MyPingFangSC_Semibold_16, 0);
     lv_obj_set_style_text_opa(g_toast_label, 200, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(g_toast_label, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(g_toast_label, 0, LV_PART_MAIN | LV_STATE_DEFAULT);

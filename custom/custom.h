@@ -13,6 +13,13 @@
 extern "C" {
 #endif
 
+    LV_FONT_DECLARE(lv_font_MyPingFangSC_Semibold_20)
+    LV_FONT_DECLARE(lv_font_MyPingFangSC_Semibold_18)
+    LV_FONT_DECLARE(lv_font_MyPingFangSC_Semibold_16)
+    LV_FONT_DECLARE(lv_font_MyPingFangSC_Regular_14)
+    LV_FONT_DECLARE(lv_font_MyPingFangSC_Regular_16)
+    LV_FONT_DECLARE(lv_font_MyPingFangSC_Medium_18)
+
 /*********************
  *      DEFINES
  *********************/

@@ -1229,11 +1229,10 @@ void setup_scr_home_page(lv_ui *ui)
 
     //Write codes home_page_music_cover
     ui->home_page_music_cover = lv_image_create(ui->home_page_mask_home_cover);
-    lv_obj_set_pos(ui->home_page_music_cover, 0, 0);
-    lv_obj_set_size(ui->home_page_music_cover, 36, 36);
-    lv_obj_add_flag(ui->home_page_music_cover, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_set_pos(ui->home_page_music_cover, -2, -2);
+    lv_obj_set_size(ui->home_page_music_cover, 40, 40);
     lv_obj_add_flag(ui->home_page_music_cover, LV_OBJ_FLAG_CLICKABLE);
-    lv_image_set_src(ui->home_page_music_cover, &_music_cover_example_RGB565A8_36x36);
+    lv_image_set_src(ui->home_page_music_cover, &_music_cover_example_RGB565A8_40x40);
     lv_image_set_pivot(ui->home_page_music_cover, 50,50);
     lv_image_set_rotation(ui->home_page_music_cover, 0);
 
@@ -1307,6 +1306,11 @@ void setup_scr_home_page(lv_ui *ui)
     lv_obj_remove_flag(ui->home_page_system_settings_title_1, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_remove_flag(ui->home_page_system_settings_icon_1, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_remove_flag(ui->home_page_mask_home_cover, LV_OBJ_FLAG_CLICKABLE);
+
+// 使用自定义字体
+    lv_obj_set_style_text_font(ui->home_page_song_title, &lv_font_MyPingFangSC_Semibold_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    lv_obj_set_style_clip_corner(ui->home_page_mask_home_cover, true, 0);
 
     for (int i = 0; i < 13; i++)
     {

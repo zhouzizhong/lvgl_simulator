@@ -371,6 +371,9 @@ void setup_scr_system_settings_page(lv_ui *ui)
     lv_obj_remove_flag(ui->system_settings_page_screen_brightness_icon, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_remove_flag(ui->system_settings_page_network_and_bluetooth_icon, LV_OBJ_FLAG_CLICKABLE);
 
+// 使用自定义字体
+    lv_obj_set_style_text_font(ui->system_settings_page_version_update_information, &lv_font_MyPingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
+
     lv_obj_add_style(ui->system_settings_page_device_information, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
     lv_obj_add_style(ui->system_settings_page_account_management, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
     lv_obj_add_style(ui->system_settings_page_network_and_bluetooth, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);

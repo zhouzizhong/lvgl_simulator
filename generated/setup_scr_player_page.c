@@ -259,7 +259,8 @@ void setup_scr_player_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->player_page_left_control_button, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of player_page.
-
+    lv_obj_set_style_text_font(ui->player_page_album_title, &lv_font_MyPingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->player_page_song_title, &lv_font_MyPingFangSC_Semibold_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->player_page);

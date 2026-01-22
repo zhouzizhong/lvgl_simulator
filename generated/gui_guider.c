@@ -101,8 +101,8 @@ void setup_ui(lv_ui *ui)
     setup_bottom_layer();
     init_scr_del_flag(ui);
     init_keyboard(ui);
-    setup_scr_system_settings_page(ui);
-    lv_screen_load(ui->system_settings_page);
+    setup_scr_startup_page(ui);
+    lv_screen_load(ui->startup_page);
 }
 
 void video_play(lv_ui *ui)

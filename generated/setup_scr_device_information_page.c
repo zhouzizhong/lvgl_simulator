@@ -738,7 +738,16 @@ void setup_scr_device_information_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->device_information_page_left_control_button, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of device_information_page.
-
+    lv_obj_set_style_text_font(ui->device_information_page_sn_code, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_device_number, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_firmware_version, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_device_model, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_device_name, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_cache_file_size, &lv_font_MyPingFangSC_Regular_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_audio_file_size, &lv_font_MyPingFangSC_Regular_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_system_file_size, &lv_font_MyPingFangSC_Regular_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_available_space, &lv_font_MyPingFangSC_Semibold_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->device_information_page_storage_space, &lv_font_MyPingFangSC_Semibold_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->device_information_page);

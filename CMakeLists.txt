@@ -25,7 +25,7 @@ target_include_directories(lvgl PUBLIC ${PROJECT_SOURCE_DIR} ${SDL2_INCLUDE_DIRS
 
 # 1. 搜索自定义代码和自动生成代码
 # 递归搜索custom目录下的所有源文件
-file(GLOB_RECURSE CUSTOM_SRCS "${PROJECT_SOURCE_DIR}/custom/*.c" "${PROJECT_SOURCE_DIR}/custom/*.cpp")
+file(GLOB_RECURSE CUSTOM_SRCS "${PROJECT_SOURCE_DIR}/custom/*.c" "${PROJECT_SOURCE_DIR}/custom/*.cpp" "${PROJECT_SOURCE_DIR}/custom/*.h")
 # 递归搜索generated目录下的所有源文件
 file(GLOB_RECURSE GENERATED_SRCS "${PROJECT_SOURCE_DIR}/generated/*.c" "${PROJECT_SOURCE_DIR}/generated/*.cpp")
 

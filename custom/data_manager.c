@@ -246,7 +246,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_obj_set_style_border_width(song_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_radius(song_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(song_title, lv_color_hex(0xffffff), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(song_title, &lv_font_PingFangSC_Semibold_18, 0);
+    lv_obj_set_style_text_font(song_title, &lv_font_MyPingFangSC_Semibold_18, 0);
     lv_obj_set_style_text_opa(song_title, LV_OPA_90, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(song_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(song_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -269,7 +269,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_obj_set_style_border_width(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_radius(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(album_title, lv_color_hex(0xf2f4fc), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(album_title, &lv_font_PingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(album_title, &lv_font_MyPingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(album_title, LV_OPA_70, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -572,7 +572,8 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
         // 创建标题标签
         lv_obj_t* album_title = lv_label_create(album_item);
         lv_label_set_text(album_title, folder->folder_name);
-        lv_label_set_long_mode(album_title, LV_LABEL_LONG_WRAP);
+        lv_label_set_long_mode(album_title, LV_LABEL_LONG_SCROLL_CIRCULAR);
+        lv_obj_set_style_anim_duration(album_title, 8000, LV_PART_MAIN);
         lv_obj_set_pos(album_title, 44, 17);
         lv_obj_set_size(album_title, 120, 20);
 
@@ -580,7 +581,7 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
         lv_obj_set_style_border_width(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_radius(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_color(album_title, lv_color_hex(0xffffff), LV_PART_MAIN | LV_STATE_DEFAULT);
-        lv_obj_set_style_text_font(album_title, &lv_font_PingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(album_title, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_opa(album_title, LV_OPA_90, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_letter_space(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_line_space(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -605,7 +606,7 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
         lv_obj_set_style_border_width(songs_num, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_radius(songs_num, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_color(songs_num, lv_color_hex(0xf2f4fc), LV_PART_MAIN | LV_STATE_DEFAULT);
-        lv_obj_set_style_text_font(songs_num, &lv_font_PingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(songs_num, &lv_font_MyPingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_opa(songs_num, LV_OPA_70, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_letter_space(songs_num, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_text_line_space(songs_num, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -633,12 +634,12 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
     }
 }
 int scan_musicdir(void) {
-    add_local_folder("local_music_1", 1, "/sdcard/Music");
+    add_local_folder("中文local_music_1", 1, "/sdcard/Music");
     is_localsong_exists = 1;
     return 0;
 }
 void scan_playlist_add(const char* playlist_path, const char* playlist_name) {
-    playlist_add(&g_local_playlist, "music_1", playlist_name, "/sdcard/Music");
+    playlist_add(&g_local_playlist, "中文music_1", playlist_name, "/sdcard/Music");
     return;
 }
 void init_child_info_repo(void) {

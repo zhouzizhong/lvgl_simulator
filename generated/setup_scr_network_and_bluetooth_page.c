@@ -236,6 +236,10 @@ void setup_scr_network_and_bluetooth_page(lv_ui *ui)
     lv_obj_remove_flag(ui->network_and_bluetooth_page_wifi_pair_up_icon, LV_OBJ_FLAG_CLICKABLE);
     lv_obj_remove_flag(ui->network_and_bluetooth_page_wifi_scan_code_button, LV_OBJ_FLAG_CLICKABLE);
 
+// 使用自定义字体
+    lv_obj_set_style_text_font(ui->network_and_bluetooth_page_bt_pair_up_title, &lv_font_MyPingFangSC_Medium_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->network_and_bluetooth_page_wifi_pair_up_title, &lv_font_MyPingFangSC_Medium_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
     //Update current screen layout.
     lv_obj_update_layout(ui->network_and_bluetooth_page);
 

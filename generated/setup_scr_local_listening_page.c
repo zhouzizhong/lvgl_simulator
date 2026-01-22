@@ -62,16 +62,16 @@ void setup_scr_local_listening_page(lv_ui *ui)
 
     //Write codes local_listening_page_main_title
     ui->local_listening_page_main_title = lv_label_create(ui->local_listening_page_status_bar);
-    lv_obj_set_pos(ui->local_listening_page_main_title, 78, 32);
-    lv_obj_set_size(ui->local_listening_page_main_title, 150, 28);
+    lv_obj_set_pos(ui->local_listening_page_main_title, 58, 32);
+    lv_obj_set_size(ui->local_listening_page_main_title, 170, 28);
     lv_label_set_text(ui->local_listening_page_main_title, "自定义专辑");
-    lv_label_set_long_mode(ui->local_listening_page_main_title, LV_LABEL_LONG_WRAP);
+    lv_label_set_long_mode(ui->local_listening_page_main_title, LV_LABEL_LONG_DOT);
 
     //Write style for local_listening_page_main_title, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->local_listening_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->local_listening_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->local_listening_page_main_title, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui->local_listening_page_main_title, &lv_font_PingFangSC_Medium_20, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->local_listening_page_main_title, &lv_font_PingFangSC_Semibold_20, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->local_listening_page_main_title, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_letter_space(ui->local_listening_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_line_space(ui->local_listening_page_main_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -97,7 +97,7 @@ void setup_scr_local_listening_page(lv_ui *ui)
     lv_obj_set_style_image_opa(ui->local_listening_page_left_control_button, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of local_listening_page.
-
+    lv_obj_set_style_text_font(ui->local_listening_page_main_title, &lv_font_MyPingFangSC_Semibold_20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->local_listening_page);

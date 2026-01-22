@@ -19,8 +19,8 @@
 
 
 /* common code  begin  */
-
-
+#undef LV_FONT_FMT_TXT_LARGE
+#define LV_FONT_FMT_TXT_LARGE 1
 /* common code end */
 
 
