@@ -112,9 +112,12 @@ static lv_display_t * hal_init(int32_t w, int32_t h)
   lv_indev_set_group(mouse, lv_group_get_default());
   lv_indev_set_display(mouse, disp);
   lv_display_set_default(disp);
-  // 滚轮输入设备
-  lv_indev_t* mousewheel = lv_sdl_mousewheel_create();
-  lv_indev_set_display(mousewheel, disp);
+
+  // // 滚轮输入设备
+  // lv_indev_t* mousewheel = lv_sdl_mousewheel_create();
+  // lv_indev_set_group(mouse, lv_group_get_default());
+  // lv_indev_set_display(mousewheel, disp);
+  // lv_display_set_default(disp);
 
   /*Create a cursor*/
   // LV_IMAGE_DECLARE(mouse_cursor_icon); /*Declare the image file.*/

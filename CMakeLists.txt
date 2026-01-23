@@ -6,6 +6,7 @@ option(LV_USE_LIBPNG "Use libpng to decode PNG" OFF)
 option(LV_USE_LIBJPEG_TURBO "Use libjpeg turbo to decode JPEG" OFF)
 option(LV_USE_FFMPEG "Use libffmpeg to display video using lv_ffmpeg" OFF)
 option(LV_USE_FREETYPE "Use freetype lib" OFF)
+option(LV_USE_LV_DRIVERS "Use LVGL drivers" OFF)
 
 set(CMAKE_C_STANDARD 99)#C99 # lvgl officially support C99 and above
 set(CMAKE_CXX_STANDARD 17)#C17
@@ -19,9 +20,32 @@ add_compile_definitions($<$<BOOL:${LV_USE_DRAW_SDL}>:LV_USE_DRAW_SDL=1>)
 add_compile_definitions($<$<BOOL:${LV_USE_LIBPNG}>:LV_USE_LIBPNG=1>)
 add_compile_definitions($<$<BOOL:${LV_USE_LIBJPEG_TURBO}>:LV_USE_LIBJPEG_TURBO=1>)
 add_compile_definitions($<$<BOOL:${LV_USE_FFMPEG}>:LV_USE_FFMPEG=1>)
+add_compile_definitions($<$<BOOL:${LV_USE_LV_DRIVERS}>:LV_USE_LV_DRIVERS=1>)
 
 add_subdirectory(lvgl)
 target_include_directories(lvgl PUBLIC ${PROJECT_SOURCE_DIR} ${SDL2_INCLUDE_DIRS})
+
+# LVGL drivers configuration
+if(LV_USE_LV_DRIVERS)
+    # Add lv_drivers include directory
+    target_include_directories(lvgl PUBLIC ${PROJECT_SOURCE_DIR}/lv_drivers)
+    
+    # Add specific driver source files
+    # Display drivers
+    set(LV_DRIVERS_DISPLAY_SRCS
+        ${PROJECT_SOURCE_DIR}/lv_drivers/display/fbdev.c
+        # Add more display drivers here if needed
+    )
+    
+    # Input drivers
+    set(LV_DRIVERS_INPUT_SRCS
+        # Add input drivers here if needed
+        # e.g., ${PROJECT_SOURCE_DIR}/lv_drivers/indev/evdev.c
+    )
+    
+    # Add all driver sources
+    target_sources(main PRIVATE ${LV_DRIVERS_DISPLAY_SRCS} ${LV_DRIVERS_INPUT_SRCS})
+endif()
 
 # 1. 搜索自定义代码和自动生成代码
 # 递归搜索custom目录下的所有源文件
