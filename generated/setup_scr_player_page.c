@@ -183,7 +183,7 @@ void setup_scr_player_page(lv_ui *ui)
     //Write codes player_page_song_title
     ui->player_page_song_title = lv_label_create(ui->player_page);
     lv_obj_set_pos(ui->player_page_song_title, 16, 149);
-    lv_obj_set_size(ui->player_page_song_title, 208, 25);
+    lv_obj_set_size(ui->player_page_song_title, 208, 27);
     lv_label_set_text(ui->player_page_song_title, "Lots of Shallots isaa Shallots");
     lv_label_set_long_mode(ui->player_page_song_title, LV_LABEL_LONG_SCROLL_CIRCULAR);
 
@@ -203,12 +203,28 @@ void setup_scr_player_page(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->player_page_song_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->player_page_song_title, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
+    //Write codes player_page_mask_music_cover
+    ui->player_page_mask_music_cover = lv_obj_create(ui->player_page);
+    lv_obj_set_pos(ui->player_page_mask_music_cover, 74, 49);
+    lv_obj_set_size(ui->player_page_mask_music_cover, 92, 92);
+    lv_obj_set_scrollbar_mode(ui->player_page_mask_music_cover, LV_SCROLLBAR_MODE_OFF);
+
+    //Write style for player_page_mask_music_cover, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->player_page_mask_music_cover, 8, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->player_page_mask_music_cover, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
     //Write codes player_page_music_cover
-    ui->player_page_music_cover = lv_image_create(ui->player_page);
-    lv_obj_set_pos(ui->player_page_music_cover, 74, 49);
-    lv_obj_set_size(ui->player_page_music_cover, 92, 92);
+    ui->player_page_music_cover = lv_image_create(ui->player_page_mask_music_cover);
+    lv_obj_set_pos(ui->player_page_music_cover, -2, -2);
+    lv_obj_set_size(ui->player_page_music_cover, 96, 96);
     lv_obj_add_flag(ui->player_page_music_cover, LV_OBJ_FLAG_CLICKABLE);
-    lv_image_set_src(ui->player_page_music_cover, &_music_cover_example_RGB565A8_92x92);
+    lv_image_set_src(ui->player_page_music_cover, &_music_cover_example_RGB565A8_96x96);
     lv_image_set_pivot(ui->player_page_music_cover, 50,50);
     lv_image_set_rotation(ui->player_page_music_cover, 0);
 
@@ -261,6 +277,9 @@ void setup_scr_player_page(lv_ui *ui)
     //The custom code of player_page.
     lv_obj_set_style_text_font(ui->player_page_album_title, &lv_font_MyPingFangSC_Regular_14, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->player_page_song_title, &lv_font_MyPingFangSC_Semibold_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    lv_image_set_inner_align(ui->player_page_music_cover, LV_IMAGE_ALIGN_STRETCH);
+    lv_obj_set_style_clip_corner(ui->player_page_mask_music_cover, true, 0);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->player_page);

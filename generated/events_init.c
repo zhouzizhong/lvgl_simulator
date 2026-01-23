@@ -374,6 +374,29 @@ static void home_page_quick_play_panel_event_handler (lv_event_t *e)
     }
 }
 
+static void home_page_play_button_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        if (g_current_play_data.play_status == PLAY_STATUS_STOPPED)
+        {
+            g_current_play_data.play_status = PLAY_STATUS_PLAYING;
+            start_music_cover_rotation(&guider_ui);
+        }
+        else if (g_current_play_data.play_status == PLAY_STATUS_PLAYING)
+        {
+            g_current_play_data.play_status = PLAY_STATUS_STOPPED;
+            stop_music_cover_rotation(&guider_ui);
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_home_page (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->home_page_subpage_entry, home_page_subpage_entry_event_handler, LV_EVENT_ALL, ui);
@@ -391,6 +414,96 @@ void events_init_home_page (lv_ui *ui)
     lv_obj_add_event_cb(ui->home_page_today_listening_1, home_page_today_listening_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->home_page_today_listening, home_page_today_listening_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->home_page_quick_play_panel, home_page_quick_play_panel_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->home_page_play_button, home_page_play_button_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void player_page_ic_next_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        g_current_play_data.song_index++;
+        if (g_cur_songlist == TODAY_LISTENING_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_TODAY, g_current_play_data.song_index);
+        }
+        else if (g_cur_songlist == RECENTLY_LISTENING_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_RECENT, g_current_play_data.song_index);
+        }
+        else if (g_cur_songlist == MY_ORDER_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_MY, g_current_play_data.song_index);
+        }
+        else if (g_cur_songlist == LOCAL_LISTENING_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_LOCAL, g_current_play_data.song_index);
+        }
+        g_current_play_data.play_status = PLAY_STATUS_PLAYING;
+        update_player_page_content(&guider_ui);
+        show_toast("下一首", 1000);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void player_page_ic_pre_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        g_current_play_data.song_index--;
+        if (g_cur_songlist == TODAY_LISTENING_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_TODAY, g_current_play_data.song_index);
+        }
+        else if (g_cur_songlist == RECENTLY_LISTENING_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_RECENT, g_current_play_data.song_index);
+        }
+        else if (g_cur_songlist == MY_ORDER_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_MY, g_current_play_data.song_index);
+        }
+        else if (g_cur_songlist == LOCAL_LISTENING_PAGE)
+        {
+            update_current_song_by_index(&guider_ui, SONGLIST_LOCAL, g_current_play_data.song_index);
+        }
+        g_current_play_data.play_status = PLAY_STATUS_PLAYING;
+        update_player_page_content(&guider_ui);
+        show_toast("上一首", 1000);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void player_page_play_button_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        if (g_current_play_data.play_status == PLAY_STATUS_STOPPED)
+        {
+            g_current_play_data.play_status = PLAY_STATUS_PLAYING;
+            start_music_cover_rotation(&guider_ui);
+        }
+        else if (g_current_play_data.play_status == PLAY_STATUS_PLAYING)
+        {
+            g_current_play_data.play_status = PLAY_STATUS_STOPPED;
+            stop_music_cover_rotation(&guider_ui);
+        }
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 static void player_page_list_button_event_handler (lv_event_t *e)
@@ -446,6 +559,9 @@ static void player_page_left_control_button_event_handler (lv_event_t *e)
 
 void events_init_player_page (lv_ui *ui)
 {
+    lv_obj_add_event_cb(ui->player_page_ic_next, player_page_ic_next_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->player_page_ic_pre, player_page_ic_pre_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->player_page_play_button, player_page_play_button_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->player_page_list_button, player_page_list_button_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->player_page_left_control_button, player_page_left_control_button_event_handler, LV_EVENT_ALL, ui);
 }

@@ -182,7 +182,7 @@ static void music_cover_rotation_timer_cb(lv_timer_t* timer)
     }
 
     // 设置新的角度
-    lv_image_set_rotation(guider_ui.home_page_music_cover, current_angle * 10); // LVGL角度单位是0.1度
+    lv_obj_set_style_transform_rotation(guider_ui.home_page_mask_home_cover, current_angle * 10, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 // 播放进度自动更新回调函数
 static void play_progress_update_cb(lv_timer_t* timer) {
@@ -456,10 +456,15 @@ void custom_init(lv_ui *ui)
     lv_style_set_outline_opa(&style_focus, LV_OPA_90);
     lv_style_set_border_width(&style_focus, 0);
 
+    // UI页面初始化
     page_init(ui);
+    /* 显示开机动画启动页面 */
+    lv_screen_load(ui->startup_page);
 
     // 初始化电池显示
     init_battery(ui);
+    // 初始化Toast组件和音量条组件
+    init_toast_volume_bar();
 
     // 正常流程：加载主页
     ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.startup_page_del, setup_scr_home_page, LV_SCR_LOAD_ANIM_FADE_ON, LOAD_ANIM_TIME, 1000, false, false);
@@ -601,7 +606,7 @@ void start_music_cover_rotation(lv_ui* ui)
 
     // 重置角度
     current_angle = 0;
-    lv_img_set_angle(ui->home_page_music_cover, 0);
+    lv_obj_set_style_transform_rotation(guider_ui.home_page_mask_home_cover, current_angle, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     // 创建定时器，每100毫秒更新一次
     music_cover_timer = lv_timer_create(music_cover_rotation_timer_cb, 100, ui);
@@ -625,7 +630,7 @@ void stop_music_cover_rotation(lv_ui* ui)
 
     // 重置角度到0
     current_angle = 0;
-    lv_img_set_angle(ui->home_page_music_cover, 0);
+    lv_obj_set_style_transform_rotation(guider_ui.home_page_mask_home_cover, current_angle, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     music_cover_rotating = false;
 }

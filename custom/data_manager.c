@@ -200,7 +200,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_obj_set_pos(cover_img_mask, 8, 14);
     lv_obj_set_size(cover_img_mask, 40, 40);
     lv_obj_set_scrollbar_mode(cover_img_mask, LV_SCROLLBAR_MODE_OFF);
-    lv_obj_clear_flag(cover_img_mask, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(cover_img_mask, LV_OBJ_FLAG_CLICKABLE);
 
     //Write style for cover_img_mask, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(cover_img_mask, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -216,24 +216,25 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_obj_set_style_shadow_spread(cover_img_mask, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_ofs_x(cover_img_mask, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_ofs_y(cover_img_mask, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_radius(ui->home_page_mask_home_cover, LV_RADIUS_CIRCLE, 0);
     lv_obj_set_style_clip_corner(cover_img_mask, true, 0);
 
     // 创建封面图片
     lv_obj_t* cover_img_obj = lv_img_create(cover_img_mask);
-    lv_obj_clear_flag(cover_img_obj, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(cover_img_obj, cover_img);
-
+    lv_obj_remove_flag(cover_img_obj, LV_OBJ_FLAG_CLICKABLE);
+    if (strcmp(cover_img, "default_cover") == 0)
+    {
+        lv_img_set_src(cover_img_obj, &_music_cover_example_RGB565A8_40x40);
+    }
+    else
+    {
+        lv_img_set_src(cover_img_obj, cover_img);
+    }
     // 设置图片位置和大小
-    lv_obj_set_size(cover_img_obj, 92, 92);
+    lv_obj_set_size(cover_img_obj, 42, 42);
     lv_img_set_pivot(cover_img_obj, 20, 20);
     lv_img_set_angle(cover_img_obj, 0);
-    lv_obj_set_pos(cover_img_obj, -13, -13);
-
-    // 设置封面样式
-    lv_obj_set_style_img_recolor_opa(cover_img_obj, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_img_opa(cover_img_obj, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_img_set_zoom(cover_img_obj, 120);
+    lv_obj_set_pos(cover_img_obj, 0, 0);
+    lv_image_set_inner_align(cover_img_obj, LV_IMAGE_ALIGN_STRETCH);
 
     // 创建歌曲标题
     lv_obj_t* song_title = lv_label_create(song_container);
@@ -283,7 +284,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
 
     // 创建旋律图标（默认隐藏）
     lv_obj_t* rhythm_icon = lv_gif_create(song_container);
-    lv_obj_clear_flag(rhythm_icon, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(rhythm_icon, LV_OBJ_FLAG_CLICKABLE);
     lv_gif_set_src(rhythm_icon, &ic_play);
     lv_obj_set_pos(rhythm_icon, 56, 12);
     lv_obj_set_size(rhythm_icon, 22, 22);
@@ -331,7 +332,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
 
     // 设置必要标志位
     lv_obj_add_flag(song_container, LV_OBJ_FLAG_CLICKABLE);
-    lv_obj_clear_flag(song_container, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_remove_flag(song_container, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_add_flag(song_container, LV_OBJ_FLAG_CLICK_FOCUSABLE);
     lv_obj_add_flag(song_container, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
 
@@ -524,7 +525,7 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
     // 清除容器中的现有内容
     lv_obj_clean(ui->local_audio_page_subpage_entry);
     // 移除隐藏标志，显示容器
-    lv_obj_clear_flag(ui->local_audio_page_subpage_entry, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_remove_flag(ui->local_audio_page_subpage_entry, LV_OBJ_FLAG_HIDDEN);
     // 遍历仓库中的每个文件夹
     for (int i = 0; i < repo->count; i++) {
         const local_folder_t* folder = &repo->folders[i];
@@ -556,7 +557,7 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
 
         // 创建图标
         lv_obj_t* album_icon = lv_img_create(album_item);
-        lv_obj_clear_flag(album_icon, LV_OBJ_FLAG_CLICKABLE);
+        lv_obj_remove_flag(album_icon, LV_OBJ_FLAG_CLICKABLE);
         lv_img_set_src(album_icon, &_local_audio_album_icon2_RGB565A8_30x30); // 使用现有的图标资源
         lv_img_set_pivot(album_icon, 50, 50);
         lv_img_set_angle(album_icon, 0);
@@ -627,7 +628,7 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
 
         lv_obj_add_style(album_item, &style_focus, LV_PART_MAIN | LV_STATE_FOCUSED);
         lv_obj_add_flag(album_item, LV_OBJ_FLAG_CLICKABLE);
-        lv_obj_clear_flag(album_item, LV_OBJ_FLAG_SCROLLABLE);
+        lv_obj_remove_flag(album_item, LV_OBJ_FLAG_SCROLLABLE);
         lv_obj_add_flag(album_item, LV_OBJ_FLAG_CLICK_FOCUSABLE);
         lv_obj_add_flag(album_item, LV_OBJ_FLAG_SCROLL_ON_FOCUS);
         lv_group_add_obj(local_songlist_group, album_item);
@@ -635,11 +636,11 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
 }
 int scan_musicdir(void) {
     //检索本地音乐文件夹
-    add_local_folder("叫早儿歌", 6, "文件夹路径");
-    add_local_folder("哄睡儿歌", 6, "文件夹路径");
-    add_local_folder("诗词", 6, "文件夹路径");
-    add_local_folder("童谣", 6, "文件夹路径");
-    add_local_folder("童话", 6, "文件夹路径");
+    add_local_folder("叫早儿歌", 7, "文件夹路径");
+    add_local_folder("哄睡儿歌", 7, "文件夹路径");
+    add_local_folder("诗词", 7, "文件夹路径");
+    add_local_folder("童谣", 7, "文件夹路径");
+    add_local_folder("童话", 7, "文件夹路径");
     is_localsong_exists = 1;
     return 0;
 }
@@ -651,6 +652,7 @@ void scan_playlist_add(const char* playlist_path, const char* playlist_name) {
     playlist_add(&g_local_playlist, "Hello Sunshine, Time to Play", playlist_name, "D:Hello Sunshine, Time to Play.png");
     playlist_add(&g_local_playlist, "Stretch and Yawn Adventure Song", playlist_name, "D:Stretch and Yawn Adventure Song.png");
     playlist_add(&g_local_playlist, "Cock-a-Doodle Jump", playlist_name, "D:Cock-a-Doodle Jump.png");
+    playlist_add(&g_local_playlist, "Little Bird, Little Bird", playlist_name, "default_cover");
     return;
 }
 void init_child_info_repo(void) {

@@ -533,6 +533,16 @@ void update_player_page_content(lv_ui* ui)
     if (!ui->player_page)
         return;
 
+    if (g_current_play_data.play_status == PLAY_STATUS_PLAYING)
+    {
+        // 设置为选中状态（显示暂停图标）
+        lv_obj_add_state(ui->player_page_play_button, LV_STATE_CHECKED);
+    }
+    else if (g_current_play_data.play_status == PLAY_STATUS_STOPPED)
+    {
+        // 设置为未选中状态（显示播放图标）
+        lv_obj_remove_state(ui->player_page_play_button, LV_STATE_CHECKED);
+    }
     //根据当前歌曲信息更新播放页面
     lv_label_set_text(ui->player_page_song_title, g_current_play_data.song_name);
     lv_label_set_text(ui->player_page_album_title, g_current_play_data.album_name);

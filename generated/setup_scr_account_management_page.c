@@ -184,19 +184,6 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->account_management_page_sub_account_name_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->account_management_page_sub_account_name_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes account_management_page_child_icon_3
-    ui->account_management_page_child_icon_3 = lv_image_create(ui->account_management_page_container_3);
-    lv_obj_set_pos(ui->account_management_page_child_icon_3, 0, 0);
-    lv_obj_set_size(ui->account_management_page_child_icon_3, 60, 60);
-    lv_obj_add_flag(ui->account_management_page_child_icon_3, LV_OBJ_FLAG_CLICKABLE);
-    lv_image_set_src(ui->account_management_page_child_icon_3, &_music_cover_example_RGB565A8_60x60);
-    lv_image_set_pivot(ui->account_management_page_child_icon_3, 50,50);
-    lv_image_set_rotation(ui->account_management_page_child_icon_3, 0);
-
-    //Write style for account_management_page_child_icon_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_image_recolor_opa(ui->account_management_page_child_icon_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_image_opa(ui->account_management_page_child_icon_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes account_management_page_mask_3
     ui->account_management_page_mask_3 = lv_obj_create(ui->account_management_page_container_3);
     lv_obj_set_pos(ui->account_management_page_mask_3, 0, 0);
@@ -211,12 +198,20 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_pad_bottom(ui->account_management_page_mask_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->account_management_page_mask_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->account_management_page_mask_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->account_management_page_mask_3, 1, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_color(ui->account_management_page_mask_3, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_opa(ui->account_management_page_mask_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_spread(ui->account_management_page_mask_3, 12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_offset_x(ui->account_management_page_mask_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_offset_y(ui->account_management_page_mask_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->account_management_page_mask_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes account_management_page_child_icon_3
+    ui->account_management_page_child_icon_3 = lv_image_create(ui->account_management_page_mask_3);
+    lv_obj_set_pos(ui->account_management_page_child_icon_3, -2, -2);
+    lv_obj_set_size(ui->account_management_page_child_icon_3, 64, 64);
+    lv_obj_add_flag(ui->account_management_page_child_icon_3, LV_OBJ_FLAG_CLICKABLE);
+    lv_image_set_src(ui->account_management_page_child_icon_3, &_music_cover_example_RGB565A8_64x64);
+    lv_image_set_pivot(ui->account_management_page_child_icon_3, 50,50);
+    lv_image_set_rotation(ui->account_management_page_child_icon_3, 0);
+
+    //Write style for account_management_page_child_icon_3, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_image_recolor_opa(ui->account_management_page_child_icon_3, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_image_opa(ui->account_management_page_child_icon_3, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes account_management_page_ic_download_done_icon_3
     ui->account_management_page_ic_download_done_icon_3 = lv_image_create(ui->account_management_page_container_3);
@@ -271,19 +266,6 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->account_management_page_sub_account_name_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->account_management_page_sub_account_name_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes account_management_page_child_icon_2
-    ui->account_management_page_child_icon_2 = lv_image_create(ui->account_management_page_container_2);
-    lv_obj_set_pos(ui->account_management_page_child_icon_2, 0, 0);
-    lv_obj_set_size(ui->account_management_page_child_icon_2, 60, 60);
-    lv_obj_add_flag(ui->account_management_page_child_icon_2, LV_OBJ_FLAG_CLICKABLE);
-    lv_image_set_src(ui->account_management_page_child_icon_2, &_music_cover_example_RGB565A8_60x60);
-    lv_image_set_pivot(ui->account_management_page_child_icon_2, 50,50);
-    lv_image_set_rotation(ui->account_management_page_child_icon_2, 0);
-
-    //Write style for account_management_page_child_icon_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_image_recolor_opa(ui->account_management_page_child_icon_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_image_opa(ui->account_management_page_child_icon_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes account_management_page_mask_2
     ui->account_management_page_mask_2 = lv_obj_create(ui->account_management_page_container_2);
     lv_obj_set_pos(ui->account_management_page_mask_2, 0, 0);
@@ -298,12 +280,20 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_pad_bottom(ui->account_management_page_mask_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->account_management_page_mask_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->account_management_page_mask_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->account_management_page_mask_2, 1, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_color(ui->account_management_page_mask_2, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_opa(ui->account_management_page_mask_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_spread(ui->account_management_page_mask_2, 12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_offset_x(ui->account_management_page_mask_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_offset_y(ui->account_management_page_mask_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->account_management_page_mask_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes account_management_page_child_icon_2
+    ui->account_management_page_child_icon_2 = lv_image_create(ui->account_management_page_mask_2);
+    lv_obj_set_pos(ui->account_management_page_child_icon_2, -2, -2);
+    lv_obj_set_size(ui->account_management_page_child_icon_2, 64, 64);
+    lv_obj_add_flag(ui->account_management_page_child_icon_2, LV_OBJ_FLAG_CLICKABLE);
+    lv_image_set_src(ui->account_management_page_child_icon_2, &_music_cover_example_RGB565A8_64x64);
+    lv_image_set_pivot(ui->account_management_page_child_icon_2, 50,50);
+    lv_image_set_rotation(ui->account_management_page_child_icon_2, 0);
+
+    //Write style for account_management_page_child_icon_2, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_image_recolor_opa(ui->account_management_page_child_icon_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_image_opa(ui->account_management_page_child_icon_2, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes account_management_page_ic_download_done_icon_2
     ui->account_management_page_ic_download_done_icon_2 = lv_image_create(ui->account_management_page_container_2);
@@ -357,19 +347,6 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->account_management_page_sub_account_name_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->account_management_page_sub_account_name_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes account_management_page_child_icon_1
-    ui->account_management_page_child_icon_1 = lv_image_create(ui->account_management_page_container_1);
-    lv_obj_set_pos(ui->account_management_page_child_icon_1, 0, 0);
-    lv_obj_set_size(ui->account_management_page_child_icon_1, 60, 60);
-    lv_obj_add_flag(ui->account_management_page_child_icon_1, LV_OBJ_FLAG_CLICKABLE);
-    lv_image_set_src(ui->account_management_page_child_icon_1, &_music_cover_example_RGB565A8_60x60);
-    lv_image_set_pivot(ui->account_management_page_child_icon_1, 50,50);
-    lv_image_set_rotation(ui->account_management_page_child_icon_1, 0);
-
-    //Write style for account_management_page_child_icon_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_image_recolor_opa(ui->account_management_page_child_icon_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_image_opa(ui->account_management_page_child_icon_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-
     //Write codes account_management_page_mask_1
     ui->account_management_page_mask_1 = lv_obj_create(ui->account_management_page_container_1);
     lv_obj_set_pos(ui->account_management_page_mask_1, 0, 0);
@@ -384,12 +361,20 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_pad_bottom(ui->account_management_page_mask_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui->account_management_page_mask_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui->account_management_page_mask_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_width(ui->account_management_page_mask_1, 1, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_color(ui->account_management_page_mask_1, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_opa(ui->account_management_page_mask_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_spread(ui->account_management_page_mask_1, 12, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_offset_x(ui->account_management_page_mask_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_shadow_offset_y(ui->account_management_page_mask_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->account_management_page_mask_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes account_management_page_child_icon_1
+    ui->account_management_page_child_icon_1 = lv_image_create(ui->account_management_page_mask_1);
+    lv_obj_set_pos(ui->account_management_page_child_icon_1, -2, -2);
+    lv_obj_set_size(ui->account_management_page_child_icon_1, 64, 64);
+    lv_obj_add_flag(ui->account_management_page_child_icon_1, LV_OBJ_FLAG_CLICKABLE);
+    lv_image_set_src(ui->account_management_page_child_icon_1, &_music_cover_example_RGB565A8_64x64);
+    lv_image_set_pivot(ui->account_management_page_child_icon_1, 50,50);
+    lv_image_set_rotation(ui->account_management_page_child_icon_1, 0);
+
+    //Write style for account_management_page_child_icon_1, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_image_recolor_opa(ui->account_management_page_child_icon_1, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_image_opa(ui->account_management_page_child_icon_1, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes account_management_page_ic_download_done_icon_1
     ui->account_management_page_ic_download_done_icon_1 = lv_image_create(ui->account_management_page_container_1);
@@ -410,6 +395,24 @@ void setup_scr_account_management_page(lv_ui *ui)
     lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_3, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_2, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->account_management_page_sub_account_name_1, &lv_font_MyPingFangSC_Semibold_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    lv_obj_remove_flag(ui->account_management_page_ic_download_done_icon_3, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_child_icon_3, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_mask_3, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_ic_download_done_icon_2, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_child_icon_2, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_mask_2, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_ic_download_done_icon_1, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_child_icon_1, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_remove_flag(ui->account_management_page_mask_1, LV_OBJ_FLAG_CLICKABLE);
+
+    lv_image_set_inner_align(ui->account_management_page_child_icon_3, LV_IMAGE_ALIGN_STRETCH);
+    lv_image_set_inner_align(ui->account_management_page_child_icon_2, LV_IMAGE_ALIGN_STRETCH);
+    lv_image_set_inner_align(ui->account_management_page_child_icon_1, LV_IMAGE_ALIGN_STRETCH);
+
+    lv_obj_set_style_clip_corner(ui->account_management_page_mask_3, true, 0);
+    lv_obj_set_style_clip_corner(ui->account_management_page_mask_2, true, 0);
+    lv_obj_set_style_clip_corner(ui->account_management_page_mask_1, true, 0);
 
     //Update current screen layout.
     lv_obj_update_layout(ui->account_management_page);
