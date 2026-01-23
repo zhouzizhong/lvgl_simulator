@@ -225,7 +225,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_img_set_src(cover_img_obj, cover_img);
 
     // 设置图片位置和大小
-    lv_obj_set_size(cover_img_obj, 90, 90);
+    lv_obj_set_size(cover_img_obj, 92, 92);
     lv_img_set_pivot(cover_img_obj, 20, 20);
     lv_img_set_angle(cover_img_obj, 0);
     lv_obj_set_pos(cover_img_obj, -13, -13);
@@ -282,9 +282,9 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_obj_set_style_shadow_width(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     // 创建旋律图标（默认隐藏）
-    lv_obj_t* rhythm_icon = lv_img_create(song_container);
+    lv_obj_t* rhythm_icon = lv_gif_create(song_container);
     lv_obj_clear_flag(rhythm_icon, LV_OBJ_FLAG_CLICKABLE);
-    lv_img_set_src(rhythm_icon, "");
+    lv_gif_set_src(rhythm_icon, &ic_play);
     lv_obj_set_pos(rhythm_icon, 56, 12);
     lv_obj_set_size(rhythm_icon, 22, 22);
     lv_obj_add_flag(rhythm_icon, LV_OBJ_FLAG_HIDDEN); // 默认隐藏
@@ -573,9 +573,9 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
         lv_obj_t* album_title = lv_label_create(album_item);
         lv_label_set_text(album_title, folder->folder_name);
         lv_label_set_long_mode(album_title, LV_LABEL_LONG_SCROLL_CIRCULAR);
-        lv_obj_set_style_anim_duration(album_title, 8000, LV_PART_MAIN);
+        lv_obj_set_style_anim_duration(album_title, LABLE_SCROLL_SPEED, LV_PART_MAIN);
         lv_obj_set_pos(album_title, 44, 17);
-        lv_obj_set_size(album_title, 120, 20);
+        lv_obj_set_size(album_title, 120, 22);
 
         // 设置标题样式
         lv_obj_set_style_border_width(album_title, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -634,12 +634,23 @@ void add_local_playlists_to_page(lv_ui* ui, const local_folder_repository_t* rep
     }
 }
 int scan_musicdir(void) {
-    add_local_folder("中文local_music_1", 1, "/sdcard/Music");
+    //检索本地音乐文件夹
+    add_local_folder("叫早儿歌", 6, "文件夹路径");
+    add_local_folder("哄睡儿歌", 6, "文件夹路径");
+    add_local_folder("诗词", 6, "文件夹路径");
+    add_local_folder("童谣", 6, "文件夹路径");
+    add_local_folder("童话", 6, "文件夹路径");
     is_localsong_exists = 1;
     return 0;
 }
 void scan_playlist_add(const char* playlist_path, const char* playlist_name) {
-    playlist_add(&g_local_playlist, "中文music_1", playlist_name, "/sdcard/Music");
+    //检索获取的文件夹路径
+    playlist_add(&g_local_playlist, "Rise and Shine, Little Star", playlist_name, "D:Rise and Shine, Little Star.png");
+    playlist_add(&g_local_playlist, "Good Morning, Sunny Bunny", playlist_name, "D:Good Morning, Sunny Bunny.png");
+    playlist_add(&g_local_playlist, "Wake Up, Wiggle Worms", playlist_name, "D:Wake Up, Wiggle Worms.png");
+    playlist_add(&g_local_playlist, "Hello Sunshine, Time to Play", playlist_name, "D:Hello Sunshine, Time to Play.png");
+    playlist_add(&g_local_playlist, "Stretch and Yawn Adventure Song", playlist_name, "D:Stretch and Yawn Adventure Song.png");
+    playlist_add(&g_local_playlist, "Cock-a-Doodle Jump", playlist_name, "D:Cock-a-Doodle Jump.png");
     return;
 }
 void init_child_info_repo(void) {

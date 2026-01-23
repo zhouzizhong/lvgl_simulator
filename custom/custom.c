@@ -396,7 +396,8 @@ static void music_cover_rotation_timer_cb(lv_timer_t* timer)
  */
 void custom_init(lv_ui *ui)
 {
-    /* Add your codes here */
+    /* 初始化PNG解码器 */
+    lv_lodepng_init();
     /* 当前播放歌曲信息初始化 */
     strcpy(g_current_play_data.song_name, "default-song-name");
     strcpy(g_current_play_data.album_name, "default-album-name");

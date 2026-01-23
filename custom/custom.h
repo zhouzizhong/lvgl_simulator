@@ -20,6 +20,8 @@ extern "C" {
     LV_FONT_DECLARE(lv_font_MyPingFangSC_Regular_16)
     LV_FONT_DECLARE(lv_font_MyPingFangSC_Medium_18)
 
+    LV_IMAGE_DECLARE(ic_play);
+
 /*********************
  *      DEFINES
  *********************/
@@ -45,7 +47,7 @@ extern "C" {
     #define RETURN_LOAD_ANIM LV_SCR_LOAD_ANIM_OUT_RIGHT // 返回动画样式
     #define NEXT_LOAD_ANIM LV_SCR_LOAD_ANIM_OVER_LEFT   // 跳转动画样式
     #define POP_LOAD_ANIM LV_SCR_LOAD_ANIM_FADE_ON      // 弹出动画样式
-    #define LABLE_SCROLL_SPEED 30                       // 标签滚动速度
+    #define LABLE_SCROLL_SPEED 8000                     // 标签滚动速度
     #define LOAD_ANIM_TIME 200                          // 加载动画时间
     #define LOAD_ANIM_DELAY 200                         // 加载动画延迟
     #define INACTIVITY_TIMEOUT_MS   (5 * 60 * 1000)     // 5分钟

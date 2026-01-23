@@ -21,6 +21,31 @@
 /* common code  begin  */
 #undef LV_FONT_FMT_TXT_LARGE
 #define LV_FONT_FMT_TXT_LARGE 1
+
+#undef LV_USE_FS_WIN32
+#define LV_USE_FS_WIN32 1
+#if LV_USE_FS_WIN32
+/*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
+#undef LV_FS_WIN32_LETTER
+#define LV_FS_WIN32_LETTER 'D'
+/*Set the working directory. File/directory paths will be appended to it.*/
+#undef LV_FS_WIN32_PATH
+#define LV_FS_WIN32_PATH "/work/lvgl_ings/"
+/*>0 to cache this number of bytes in lv_fs_read()*/
+#undef LV_FS_WIN32_CACHE_SIZE
+#define LV_FS_WIN32_CACHE_SIZE 1024
+#endif /* LV_USE_FS_WIN32 */
+
+#undef LV_USE_LODEPNG
+#define LV_USE_LODEPNG 1
+
+#undef LV_USE_GIF
+#define LV_USE_GIF 1
+#if LV_USE_GIF
+    /*GIF decoder accelerate*/
+#undef LV_GIF_CACHE_DECODE_DATA
+#define LV_GIF_CACHE_DECODE_DATA 1
+#endif
 /* common code end */
 
 
