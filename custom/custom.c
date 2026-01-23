@@ -63,13 +63,16 @@ int audio_count = 0;            // 当前有多少条路径
 int audio_capacity = 0;         // 已分配容量
 
 /* 儿童锁状态*/
-bool child_locked = false;
+bool g_child_locked = false;
 
 /* 电池状态 */
 int g_current_battery_level = BATTERY_DEFAULT_LEVEL; // 当前电量值
 int g_pre_battery_level = BATTERY_DEFAULT_LEVEL;
 int g_current_charge_status = 0; // 当前充电状态，0表示未充电，1表示充电中
 int g_pre_charge_status = 0;
+
+/* 屏幕亮度 */
+int g_current_brightness = DEFAULT_BRIGHTNESS;
 
 /* wifi蓝牙连接 */
 char login_qrcode[256] = "login ";
@@ -166,6 +169,24 @@ static void volume_bar_hide_timer_cb(lv_timer_t* timer)
         lv_timer_del(g_volume_bar_timer);
         g_volume_bar_timer = NULL;
     }
+}
+/**
+ * 封面图自动旋转回调函数
+ * @param timer 定时器指针
+ */
+static void music_cover_rotation_timer_cb(lv_timer_t* timer)
+{
+    current_angle += 3;
+    if (current_angle >= 360) {
+        current_angle = 0; // 重置角度
+    }
+
+    // 设置新的角度
+    lv_image_set_rotation(guider_ui.home_page_music_cover, current_angle * 10); // LVGL角度单位是0.1度
+}
+// 播放进度自动更新回调函数
+static void play_progress_update_cb(lv_timer_t* timer) {
+    update_player_page_progress(&guider_ui);
 }
 /**
  * 初始化Toast组件和音量条组件
@@ -372,25 +393,6 @@ static bool init_battery(lv_ui* ui)
 
     return true;
 }
-// 播放进度更新回调函数
-static void play_progress_update_cb(lv_timer_t* timer) {
-    update_player_page_progress(&guider_ui);
-}
-/**
- * 定时器回调函数 - 更新封面图旋转角度
- * @param timer 定时器指针
- */
-static void music_cover_rotation_timer_cb(lv_timer_t* timer)
-{
-    current_angle += 3;
-    if (current_angle >= 360) {
-        current_angle = 0; // 重置角度
-    }
-
-    // 设置新的角度
-    lv_img_set_angle(guider_ui.home_page_music_cover, current_angle * 10); // LVGL角度单位是0.1度
-}
-
 /**
  * Create a demo application
  */
@@ -433,7 +435,7 @@ void custom_init(lv_ui *ui)
 
     /* 初始化孩子信息库 */
     init_child_info_repo();
-    child_locked = false;
+    g_child_locked = false;
     is_updating = false;
     g_firmware_update_progress = 0;
 
@@ -548,14 +550,15 @@ void hide_battery_display(void)
         lv_obj_add_flag(guider_ui.startup_page_battery, LV_OBJ_FLAG_HIDDEN);
     }
 }
-int save_brightness_value(int brightness_level) {
-    
+void save_brightness_value(int brightness_level) {
+    // 保存到系统属性（持久化）
 }
-int load_brightness_value(void) {
-    
+void load_brightness_value(int* brightness_level) {
+    // 从系统属性加载亮度值
 }
-void apply_brightness_to_ui(lv_ui* ui, int brightness_level) {
-
+void apply_brightness_to_ui(int brightness_level) {
+    // 根据亮度级别设置UI元素样式
+    lv_bar_set_value(guider_ui.screen_brightness_page_brightness_bar, brightness_level, LV_ANIM_OFF);
 }
 void apply_brightness_to_hardware(int brightness_level) {
     // 根据亮度级别计算实际的亮度值（0-255）
@@ -573,8 +576,9 @@ void apply_brightness_to_hardware(int brightness_level) {
         break;
     default: hardware_brightness = 192; // 默认75%亮度
     }
+    // 将转换的亮度值应用到硬件
 }
-void set_screen_brightness(lv_ui* ui, int brightness_level) {
+void set_screen_brightness(int brightness_level) {
     // 保存到系统属性（持久化）
     save_brightness_value(brightness_level);
 
@@ -582,7 +586,7 @@ void set_screen_brightness(lv_ui* ui, int brightness_level) {
     apply_brightness_to_hardware(brightness_level);
 
     // 更新UI显示
-    apply_brightness_to_ui(ui, brightness_level);
+    apply_brightness_to_ui(brightness_level);
 }
 void start_music_cover_rotation(lv_ui* ui)
 {

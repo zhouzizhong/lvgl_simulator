@@ -21,6 +21,25 @@
 #include "data_manager.h"
 #include "page_manager.h"
 
+static void startup_page_startup_page_image_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_startup_page (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->startup_page_startup_page_image, startup_page_startup_page_image_event_handler, LV_EVENT_ALL, ui);
+}
+
 static void home_page_subpage_entry_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -755,6 +774,49 @@ void events_init_network_and_bluetooth_page (lv_ui *ui)
     lv_obj_add_event_cb(ui->network_and_bluetooth_page_left_control_button, network_and_bluetooth_page_left_control_button_event_handler, LV_EVENT_ALL, ui);
 }
 
+static void screen_brightness_page_mask_2_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        if (g_current_brightness < 3)
+        {
+            g_current_brightness += 1;
+        } else
+        {
+            g_current_brightness = 3;
+        }
+        set_screen_brightness(g_current_brightness);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void screen_brightness_page_mask_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        if (g_current_brightness > 0)
+        {
+            g_current_brightness -= 1;
+        }
+        else
+        {
+            g_current_brightness = 0;
+        }
+        set_screen_brightness(g_current_brightness);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 static void screen_brightness_page_left_control_button_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -772,6 +834,8 @@ static void screen_brightness_page_left_control_button_event_handler (lv_event_t
 
 void events_init_screen_brightness_page (lv_ui *ui)
 {
+    lv_obj_add_event_cb(ui->screen_brightness_page_mask_2, screen_brightness_page_mask_2_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_brightness_page_mask_1, screen_brightness_page_mask_1_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_brightness_page_left_control_button, screen_brightness_page_left_control_button_event_handler, LV_EVENT_ALL, ui);
 }
 

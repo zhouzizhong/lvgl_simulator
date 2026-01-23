@@ -58,6 +58,8 @@ extern "C" {
     #define TOAST_DEFAULT_DURATION 2000                 // 默认显示时间2秒
     #define TOAST_ANIM_DURATION 300                     // 动画持续时间
     #define MAX_SONG_COUNT 200                          // 最大歌曲数量
+
+    /* 系统属性默认值 */
     #define BATTERY_DEFAULT_LEVEL 80                    // 默认电量值
     #define DEFAULT_BRIGHTNESS 2                        // 默认亮度级别（0-3）
 
@@ -259,13 +261,16 @@ extern "C" {
     extern char** audio_paths;              // 本地音频文件路径数组
 
     /* 儿童锁状态*/
-    extern bool child_locked;
+    extern bool g_child_locked;
 
     /* 电池状态 */
     extern int g_current_battery_level; // 当前电量值
     extern int g_pre_battery_level;
     extern int g_current_charge_status; // 当前充电状态，0表示未充电，1表示充电中
     extern int g_pre_charge_status;
+
+    /* 屏幕亮度 */
+    extern int g_current_brightness;
 
     /* wifi蓝牙连接 */
     extern char login_qrcode[];
@@ -310,15 +315,15 @@ extern "C" {
     /* 隐藏电池电量显示组件*/
     void hide_battery_display(void);
     /* 保存亮度值*/
-    int save_brightness_value(int brightness_level);
+    void save_brightness_value(int brightness_level);
     /* 加载亮度值*/
-    int load_brightness_value(void);
+    void load_brightness_value(int* brightness_level);
     /* 应用亮度值到UI*/
-    void apply_brightness_to_ui(lv_ui* ui, int brightness_level);
+    void apply_brightness_to_ui(int brightness_level);
     /* 设置硬件亮度 */
     void apply_brightness_to_hardware(int brightness_level);
     /* 设置屏幕亮度 */
-    void set_screen_brightness(lv_ui* ui, int brightness_level);
+    void set_screen_brightness(int brightness_level);
     /* 开始封面图旋转动画 */
     void start_music_cover_rotation(lv_ui* ui);
     /* 停止封面图旋转动画 */

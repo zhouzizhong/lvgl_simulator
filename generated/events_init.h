@@ -18,6 +18,7 @@ extern "C" {
 
 void events_init(lv_ui *ui);
 
+void events_init_startup_page(lv_ui *ui);
 void events_init_home_page(lv_ui *ui);
 void events_init_player_page(lv_ui *ui);
 void events_init_today_listening_page(lv_ui *ui);
