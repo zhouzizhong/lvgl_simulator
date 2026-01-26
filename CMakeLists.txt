@@ -79,6 +79,7 @@ file(GLOB_RECURSE GENERATED_SRCS "${PROJECT_SOURCE_DIR}/generated/*.c" "${PROJEC
 add_executable(main 
     main.c                           # 主程序入口
     mouse_cursor_icon.c              # 鼠标光标图标
+    display_driver.c                 # 显示驱动
     ${CUSTOM_SRCS}                   # 自定义代码
     ${GENERATED_SRCS}                # 自动生成代码
 )
@@ -99,7 +100,6 @@ target_include_directories(main PRIVATE
 target_compile_definitions(main PRIVATE LV_CONF_INCLUDE_SIMPLE)  # LVGL 配置包含方式
 
 # 链接主程序所需库
-
 target_link_libraries(main lvgl lvgl::examples lvgl::demos lvgl::thorvg ${SDL2_LIBRARIES} m pthread)
 
 # ==============================================================================
@@ -125,6 +125,11 @@ if(LV_USE_LIBPNG)
     target_include_directories(lvgl PUBLIC ${PNG_INCLUDE_DIR})
     target_link_libraries(main ${PNG_LIBRARY})
 endif(LV_USE_LIBPNG)
+
+# 确保生成控制台应用程序（Windows）
+if(WIN32)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
+endif()
 
 # ==============================================================================
 # 调试配置

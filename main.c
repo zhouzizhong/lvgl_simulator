@@ -13,6 +13,7 @@
 #include "custom.h"
 #include "widgets_init.h"
 #include "events_init.h"
+#include "display_driver.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -31,7 +32,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static lv_display_t* hal_init(int32_t w, int32_t h);
+static lv_display_t* sdl_hal_init(int32_t w, int32_t h);
 
 /**********************
  *  STATIC VARIABLES
@@ -72,7 +73,7 @@ int main(int argc, char **argv)
   /*Initialize LVGL*/
   lv_init();
   /*Initialize the display, and the input devices*/
-  hal_init(240, 320);
+  sdl_hal_init(240, 320);
   /*Setup the UI*/
   setup_ui(&guider_ui);
   custom_init(&guider_ui);
@@ -101,8 +102,11 @@ demo_end:
  * Initialize the Hardware Abstraction Layer (HAL) for the LVGL graphics
  * library
  */
-static lv_display_t * hal_init(int32_t w, int32_t h)
+static lv_display_t* sdl_hal_init(int32_t w, int32_t h)
 {
+  /* 初始化显示硬件 */
+  display_init();
+
   lv_group_set_default(lv_group_create());
 
   lv_display_t * disp = lv_sdl_window_create(w, h);
