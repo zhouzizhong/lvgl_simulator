@@ -31,8 +31,14 @@ find_package(SDL2 REQUIRED SDL2)      # 查找 SDL2 库
 # 根据选项生成编译定义
 add_compile_definitions($<$<BOOL:${LV_USE_DRAW_SDL}>:LV_USE_DRAW_SDL=1>)
 add_compile_definitions($<$<BOOL:${LV_USE_LIBPNG}>:LV_USE_LIBPNG=1>)
-add_compile_definitions($<$<BOOL:${LV_USE_LIBJPEG_TURBO}>:LV_USE_LIBJPEG_TURBO=1>)
 add_compile_definitions($<$<BOOL:${LV_USE_LV_DRIVERS}>:LV_USE_LV_DRIVERS=1>)
+
+# ==============================================================================
+# 第三方库配置
+# ==============================================================================
+add_subdirectory(id3v2lib-dev)        # 添加 ID3V2Lib 子目录
+add_subdirectory(stb_img)             # 添加 STB Image 子目录
+add_subdirectory(mpd_client)          # 添加 MPD Client 子目录
 
 # ==============================================================================
 # LVGL 库配置
@@ -100,7 +106,7 @@ target_include_directories(main PRIVATE
 target_compile_definitions(main PRIVATE LV_CONF_INCLUDE_SIMPLE)  # LVGL 配置包含方式
 
 # 链接主程序所需库
-target_link_libraries(main lvgl lvgl::examples lvgl::demos lvgl::thorvg ${SDL2_LIBRARIES} m pthread)
+target_link_libraries(main lvgl lvgl::examples lvgl::demos lvgl::thorvg id3v2lib stb_img mpd_client ${SDL2_LIBRARIES} m pthread ws2_32)
 
 # ==============================================================================
 # 自定义目标
