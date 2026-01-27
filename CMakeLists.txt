@@ -16,39 +16,51 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/custom)
 include_directories(${PROJECT_SOURCE_DIR}/generated)
 include_directories(${PROJECT_SOURCE_DIR}/third_party)
-
-# 禁用 LVGL 不需要的组件
-set(LV_CONF_BUILD_DISABLE_EXAMPLES ON CACHE BOOL "Disable LVGL examples" FORCE)
-set(LV_CONF_BUILD_DISABLE_DEMOS ON CACHE BOOL "Disable LVGL demos" FORCE)
-set(LV_CONF_BUILD_DISABLE_THORVG_INTERNAL ON CACHE BOOL "Disable LVGL ThorVG" FORCE)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/lvgl)
 
 # 第三方库配置
 add_subdirectory(third_party/id3v2lib-dev)
 add_subdirectory(third_party/lvgl)
 
 # 收集所有源文件（排除第三方库和测试文件）
-file(GLOB_RECURSE SRC_DIRS
-    ${PROJECT_SOURCE_DIR}/*.c
+file(GLOB_RECURSE LIB_SRCS
+    ${PROJECT_SOURCE_DIR}/lvglui.c
     ${PROJECT_SOURCE_DIR}/src/**/*.c
     ${PROJECT_SOURCE_DIR}/custom/*.c
     ${PROJECT_SOURCE_DIR}/custom/**/*.c
     ${PROJECT_SOURCE_DIR}/generated/*.c
     ${PROJECT_SOURCE_DIR}/generated/**/*.c
 )
-# 排除不需要的文件
-list(FILTER SRC_DIRS EXCLUDE REGEX "third_party/.*test.*")
-list(FILTER SRC_DIRS EXCLUDE REGEX ".*CMakeFiles.*CompilerId.*")
-# 创建可执行文件
-add_executable(main ${SRC_DIRS})
 
-# 链接可执行文件依赖
-target_link_libraries(main PRIVATE
+# 创建动态库
+add_library(lvglgui SHARED ${LIB_SRCS})
+
+# 链接动态库依赖
+target_link_libraries(lvglgui PRIVATE
     id3v2lib
     lvgl
     ${SDL2_LIBRARIES}
     pthread
     ws2_32
     m
+)
+
+# 为动态库添加包含目录
+target_include_directories(lvglgui PUBLIC
+    ${PROJECT_SOURCE_DIR}
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/custom
+    ${PROJECT_SOURCE_DIR}/generated
+    ${PROJECT_SOURCE_DIR}/third_party
+    ${PROJECT_SOURCE_DIR}/third_party/lvgl
+)
+
+# 创建可执行文件
+add_executable(main ${PROJECT_SOURCE_DIR}/main.c)
+
+# 链接可执行文件依赖
+target_link_libraries(main PRIVATE
+    lvglgui
 )
 
 # 自定义目标
