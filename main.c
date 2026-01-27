@@ -2,13 +2,10 @@
  * @file main
  *
  */
-
 /*********************
  *      INCLUDES
  *********************/
 #include "lvgl/lvgl.h"
-#include "lvgl/examples/lv_examples.h"
-#include "lvgl/demos/lv_demos.h"
 #include "gui_guider.h"
 #include "custom.h"
 #include "widgets_init.h"
