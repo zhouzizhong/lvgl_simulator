@@ -13,6 +13,7 @@
 
 #include "display_driver.h"
 #include "lvgl/lvgl.h"
+#include "log.h"
 
 #define ALIGNED(a) __attribute__((aligned(a)))
 
@@ -36,7 +37,7 @@ static void gpio_init(void)
     /* TODO: 根据硬件实际情况实现GPIO初始化
      * 这是一个占位符实现，需要替换为实际的GPIO初始化代码
      */
-    printf("GPIO initialized\n");
+    LOG_INFO("GPIO initialized");
 }
 /**
  * 设置DC引脚状态
@@ -48,7 +49,7 @@ static void set_dc_pin(bool data_mode)
      * 这是一个占位符实现，需要替换为实际的GPIO控制代码
      */
     (void)data_mode;  /* 占位符 */
-    printf("DC pin set to %s\n", data_mode ? "data" : "command");
+    LOG_INFO("DC pin set to %s", data_mode ? "data" : "command");
 }
 /**
  * 设置RST引脚状态
@@ -60,14 +61,14 @@ static void set_rst_pin(bool active)
      * 这是一个占位符实现，需要替换为实际的GPIO控制代码
      */
     (void)active;  /* 占位符 */
-    printf("RST pin set to %s\n", active ? "reset" : "normal");
+    LOG_INFO("RST pin set to %s", active ? "reset" : "normal");
 }
 static void spi_init(void)
 {
     /* TODO: 根据硬件实际情况实现SPI初始化
      * 这是一个占位符实现，需要替换为实际的SPI初始化代码
      */
-    printf("SPI initialized\n");
+    LOG_INFO("SPI initialized");
 }
 /**
  * 初始化SPI屏幕
@@ -77,7 +78,7 @@ static void spi_screen_init(void)
     /* TODO: 根据硬件实际情况实现SPI屏幕初始化
       * 这是一个占位符实现，需要替换为实际的SPI屏幕初始化代码
       */
-    printf("SPI screen initialized\n");
+    LOG_INFO("SPI screen initialized");
 }
 /**
  * 初始化SPI接口

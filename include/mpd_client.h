@@ -29,6 +29,13 @@ bool mpd_client_previous(void);
 bool mpd_client_clear_playlist(void);
 bool mpd_client_add_song(const char* song_path);
 bool mpd_client_add_all_songs(void);
+
+// 文件夹（歌单）管理函数
+bool mpd_client_list_folders(char*** folders, int* count);
+bool mpd_client_load_folder_playlist(const char* folder_name);
+bool mpd_client_switch_folder_playlist(const char* folder_name);
+bool mpd_client_get_folder_songs(const char* folder_name, char*** songs, int* count);
+
 void mpd_client_deinit(void);
 
 #ifdef __cplusplus

@@ -20,6 +20,7 @@
 #include "custom.h"
 #include "data_manager.h"
 #include "page_manager.h"
+#include "mpd_client.h"
 
 static void startup_page_startup_page_image_event_handler (lv_event_t *e)
 {
@@ -384,11 +385,13 @@ static void home_page_play_button_event_handler (lv_event_t *e)
         {
             g_current_play_data.play_status = PLAY_STATUS_PLAYING;
             start_music_cover_rotation(&guider_ui);
+            mpd_client_play();
         }
         else if (g_current_play_data.play_status == PLAY_STATUS_PLAYING)
         {
             g_current_play_data.play_status = PLAY_STATUS_STOPPED;
             stop_music_cover_rotation(&guider_ui);
+            mpd_client_pause();
         }
         break;
     }
@@ -443,6 +446,7 @@ static void player_page_ic_next_event_handler (lv_event_t *e)
         g_current_play_data.play_status = PLAY_STATUS_PLAYING;
         update_player_page_content(&guider_ui);
         show_toast("下一首", 1000);
+        mpd_client_next();
         break;
     }
     default:
@@ -476,6 +480,7 @@ static void player_page_ic_pre_event_handler (lv_event_t *e)
         g_current_play_data.play_status = PLAY_STATUS_PLAYING;
         update_player_page_content(&guider_ui);
         show_toast("上一首", 1000);
+        mpd_client_previous();
         break;
     }
     default:
@@ -493,11 +498,13 @@ static void player_page_play_button_event_handler (lv_event_t *e)
         {
             g_current_play_data.play_status = PLAY_STATUS_PLAYING;
             start_music_cover_rotation(&guider_ui);
+            mpd_client_play();
         }
         else if (g_current_play_data.play_status == PLAY_STATUS_PLAYING)
         {
             g_current_play_data.play_status = PLAY_STATUS_STOPPED;
             stop_music_cover_rotation(&guider_ui);
+            mpd_client_pause();
         }
         break;
     }
