@@ -30,6 +30,9 @@ bool mpd_client_clear_playlist(void);
 bool mpd_client_add_song(const char* song_path);
 bool mpd_client_add_all_songs(void);
 
+// 心跳连接
+bool mpd_client_ping(void);
+
 // 文件夹（歌单）管理函数
 bool mpd_client_list_folders(char*** folders, int* count);
 bool mpd_client_load_folder_playlist(const char* folder_name);

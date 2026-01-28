@@ -33,6 +33,14 @@ static socket_t sockfd = INVALID_SOCKET_VALUE;
 
 static bool mpd_send_command(const char* cmd)
 {
+    // 检查连接状态
+    if (conn_state != MPD_CONN_CONNECTED) {
+        // 尝试重连
+        if (!mpd_client_connect(mpd_host, mpd_port)) {
+            return false;
+        }
+    }
+
     int len = strlen(cmd);
     int sent = 0;
     int ret;
@@ -75,6 +83,17 @@ static int mpd_recv_response(char* response, int max_len)
             }
             int ret = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
         #else
+            fd_set read_fds;
+            struct timeval tv;
+            FD_ZERO(&read_fds);
+            FD_SET(sockfd, &read_fds);
+            tv.tv_sec = 0;
+            tv.tv_usec = 100000;
+            int select_result = select(sockfd + 1, &read_fds, NULL, NULL, &tv);
+            if (select_result <= 0) {
+                timeout_count++;
+                continue;
+            }
             int ret = read(sockfd, buffer, sizeof(buffer) - 1);
         #endif
         
@@ -726,4 +745,20 @@ bool mpd_client_get_folder_songs(const char* folder_name, char*** songs, int* co
     }
 
     return true;
+}
+
+// 心跳检测函数
+bool mpd_client_ping(void)
+{
+    if (conn_state != MPD_CONN_CONNECTED) {
+        return false;
+    }
+
+    if (!mpd_send_command("ping\n")) {
+        return false;
+    }
+
+    char response[1024];
+    int len = mpd_recv_response(response, sizeof(response));
+    return (len >= 0 && strstr(response, "ACK") == NULL);
 }

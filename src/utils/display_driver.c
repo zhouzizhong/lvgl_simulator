@@ -134,6 +134,10 @@ void display_lvgl_flush(lv_display_t* disp, const lv_area_t* area, uint8_t* px_m
     for (y = area->y1; y <= area->y2; y++) {
         for (x = area->x1; x <= area->x2; x++) {
             // put_px(x, y, *buf16);
+            if (*buf16 != 0)
+            {
+                LOG_INFO("display_lvgl_flush: x=%d, y=%d, color=%x", x, y, *buf16);
+            }
             buf16++;
         }
     }

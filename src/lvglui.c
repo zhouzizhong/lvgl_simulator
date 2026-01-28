@@ -26,9 +26,38 @@
 static const char* supported_formats[] = {".mp3", ".ogg", ".wav", ".flac", ".aac", ".mp2", ".amr"};
 static const int num_formats = 7;
 
-static lv_display_t * sdl_hal_init(int32_t w, int32_t h);
 lv_ui guider_ui;
 pthread_mutex_t lvgl_mutex;
+
+static void* mpd_ping_thread_func(void* arg)
+{
+  while (1) {
+    mpd_client_ping();
+    sleep(30);
+  }
+}
+
+static lv_display_t* sdl_hal_init(int32_t w, int32_t h)
+{
+    lv_group_set_default(lv_group_create());
+
+    lv_display_t* disp = lv_sdl_window_create(w, h);
+
+    // 鼠标输入设备
+    lv_indev_t* mouse = lv_sdl_mouse_create();
+    lv_indev_set_group(mouse, lv_group_get_default());
+    lv_indev_set_display(mouse, disp);
+    lv_display_set_default(disp);
+
+    /*Create a cursor*/
+    // LV_IMAGE_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
+    // lv_obj_t * cursor_obj;
+    // cursor_obj = lv_image_create(lv_screen_active()); /*Create an image object for the cursor */
+    // lv_image_set_src(cursor_obj, &mouse_cursor_icon);           /*Set the image source*/
+    // lv_indev_set_cursor(mouse, cursor_obj);             /*Connect the image  object to the driver*/
+
+    return disp;
+}
 
 int lvglui_init(int argc, char** argv)
 {
@@ -94,12 +123,12 @@ int lvglui_init(int argc, char** argv)
       }
       LOG_INFO("MPD client deinitialized");
   }
-  /* 初始化显示硬件 */
-  display_init();
   /*Initialize LVGL*/
   lv_init();
   /*Initialize the display, and the input devices*/
   sdl_hal_init(240, 320);
+  /* 初始化显示硬件 */
+  display_init();
   /*Setup the UI*/
   setup_ui(&guider_ui);
   custom_init(&guider_ui);
@@ -107,6 +136,9 @@ int lvglui_init(int argc, char** argv)
 
   /* 初始化LVGL主循环线程锁 */
   pthread_mutex_init(&lvgl_mutex, NULL);
+
+  pthread_t mpd_ping_thread;
+  pthread_create(&mpd_ping_thread, NULL, mpd_ping_thread_func, NULL);
 
   while (1) {
     /* Periodically call the lv_timer_handler. */
@@ -118,34 +150,4 @@ int lvglui_init(int argc, char** argv)
 demo_end:
   lv_deinit();
   return 0;
-}
-
-/**********************
- *   STATIC FUNCTIONS
- **********************/
-
-/**
- * Initialize the Hardware Abstraction Layer (HAL) for the LVGL graphics
- * library
- */
-static lv_display_t* sdl_hal_init(int32_t w, int32_t h)
-{
-  lv_group_set_default(lv_group_create());
-
-  lv_display_t * disp = lv_sdl_window_create(w, h);
-
-  // 鼠标输入设备
-  lv_indev_t* mouse = lv_sdl_mouse_create();
-  lv_indev_set_group(mouse, lv_group_get_default());
-  lv_indev_set_display(mouse, disp);
-  lv_display_set_default(disp);
-
-  /*Create a cursor*/
-  // LV_IMAGE_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
-  // lv_obj_t * cursor_obj;
-  // cursor_obj = lv_image_create(lv_screen_active()); /*Create an image object for the cursor */
-  // lv_image_set_src(cursor_obj, &mouse_cursor_icon);           /*Set the image source*/
-  // lv_indev_set_cursor(mouse, cursor_obj);             /*Connect the image  object to the driver*/
-
-  return disp;
 }
