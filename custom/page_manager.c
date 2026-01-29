@@ -17,6 +17,7 @@
 #include "page_manager.h"
 #include "data_manager.h"
 #include "custom.h"
+#include "log.h"
 
 
 /**********************
@@ -524,7 +525,14 @@ void update_home_page_content(lv_ui* ui) {
         stop_music_cover_rotation(ui);
     }
     lv_label_set_text(ui->home_page_song_title, g_current_play_data.song_name);
-    lv_img_set_src(ui->home_page_music_cover, g_current_play_data.cover_path);
+    if (strcmp(g_current_play_data.cover_path, "default_cover") == 0)
+    {
+        lv_img_set_src(ui->home_page_music_cover, &_music_cover_example_RGB565A8_96x96);
+    }
+    else
+    {
+        lv_img_set_src(ui->home_page_music_cover, g_current_play_data.cover_path);
+    }
 }
 void update_player_page_content(lv_ui* ui)
 {
@@ -546,7 +554,45 @@ void update_player_page_content(lv_ui* ui)
     //根据当前歌曲信息更新播放页面
     lv_label_set_text(ui->player_page_song_title, g_current_play_data.song_name);
     lv_label_set_text(ui->player_page_album_title, g_current_play_data.album_name);
-    lv_img_set_src(ui->player_page_music_cover, g_current_play_data.cover_path);
+    if (strcmp(g_current_play_data.cover_path, "default_cover") == 0)
+    {
+        lv_img_set_src(ui->player_page_music_cover, &_music_cover_example_RGB565A8_96x96);
+    }
+    else
+    {
+        lv_img_set_src(ui->player_page_music_cover, g_current_play_data.cover_path);
+    }
+
+    // 更新背景为当前封面图
+    if (ui->player_page_background && g_current_play_data.cover_path) {
+        LOG_INFO("Updating player page background with cover: %s", g_current_play_data.cover_path);
+        
+        // 1. 清除画布，避免图像残留
+        lv_canvas_fill_bg(ui->player_page_background, lv_color_hex(0x000000), LV_OPA_COVER);
+        
+        // 2. 绘制封面图作为背景
+        lv_layer_t layer;
+        lv_canvas_init_layer(ui->player_page_background, &layer);
+
+        lv_draw_image_dsc_t img_dsc;
+        lv_draw_image_dsc_init(&img_dsc);
+        if (strcmp(g_current_play_data.cover_path, "default_cover") == 0)
+        {
+            img_dsc.src = &_music_cover_example_RGB565_320x320;
+        }
+        else
+        {
+            img_dsc.src = g_current_play_data.cover_path;
+            img_dsc.scale_x = 890;
+            img_dsc.scale_y = 890;
+        }
+        img_dsc.opa = LV_OPA_80;
+        // 设置绘制区域，稍微放大以覆盖整个背景
+        lv_area_t coords = { -40, 0, 240, 320 };
+        lv_draw_image(&layer, &img_dsc, &coords);
+
+        lv_canvas_finish_layer(ui->player_page_background, &layer);
+    }
 }
 void update_player_page_progress(lv_ui* ui) {
     // 更新进度条

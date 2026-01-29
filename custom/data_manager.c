@@ -223,7 +223,7 @@ static void add_song_to_listening(lv_ui* ui, const char* album_name, const char*
     lv_obj_remove_flag(cover_img_obj, LV_OBJ_FLAG_CLICKABLE);
     if (strcmp(cover_img, "default_cover") == 0)
     {
-        lv_img_set_src(cover_img_obj, &_music_cover_example_RGB565A8_40x40);
+        lv_img_set_src(cover_img_obj, &_music_cover_example_RGB565A8_96x96);
     }
     else
     {

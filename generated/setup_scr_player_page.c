@@ -44,7 +44,7 @@ void setup_scr_player_page(lv_ui *ui)
     lv_draw_image_dsc_t player_page_background_image_dsc_0;
     lv_draw_image_dsc_init(&player_page_background_image_dsc_0);
     player_page_background_image_dsc_0.src = &_music_cover_example_RGB565_320x320;
-    lv_area_t player_page_background_coords_image_0 = {-40, 0, 280, 320};
+    lv_area_t player_page_background_coords_image_0 = {-40, 0, 240, 320};
     lv_draw_image(&layer_player_page_background, &player_page_background_image_dsc_0, &player_page_background_coords_image_0);
 
     lv_canvas_finish_layer(ui->player_page_background, &layer_player_page_background);
@@ -58,7 +58,7 @@ void setup_scr_player_page(lv_ui *ui)
     //Write style for player_page_mask, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
     lv_obj_set_style_border_width(ui->player_page_mask, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_radius(ui->player_page_mask, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui->player_page_mask, 217, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->player_page_mask, 205, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->player_page_mask, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->player_page_mask, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui->player_page_mask, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
