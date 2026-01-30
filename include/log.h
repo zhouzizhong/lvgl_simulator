@@ -16,7 +16,7 @@ typedef enum {
 
 // 日志配置
 // 可以通过修改这个宏来控制全局日志级别
-#define LOG_LEVEL LOG_LEVEL_INFO
+#define LOG_LEVEL LOG_LEVEL_DEBUG
 
 // 日志输出函数
 void log_printf(log_level_t level, const char* file, int line, const char* format, ...);

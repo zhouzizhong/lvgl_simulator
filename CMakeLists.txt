@@ -58,6 +58,7 @@ target_include_directories(lvglgui PUBLIC
     ${PROJECT_SOURCE_DIR}/generated
     ${PROJECT_SOURCE_DIR}/third_party
     ${PROJECT_SOURCE_DIR}/third_party/lvgl
+    ${PROJECT_SOURCE_DIR}/third_party/curl/include
 )
 
 # 创建可执行文件

@@ -14,6 +14,7 @@
 #include "display_driver.h"
 #include "mpd_client.h"
 #include "log.h"
+#include "network.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -63,65 +64,71 @@ int lvglui_init(int argc, char** argv)
 {
   // Parse command line arguments
   if (argc > 1) {
-      // Initialize and connect
-      LOG_INFO("Initializing MPD client...");
-      if (!mpd_client_init()) {
-          LOG_ERROR("MPD client initialization failed");
-          return 1;
+      if (strcmp(argv[1], "network") == 0) {
+          LOG_INFO("=== Network Module Test ===");
+          test_network();
       }
-      LOG_INFO("MPD client initialized successfully");
-      
-      if (!mpd_client_connect("localhost", 6600)) {
-          LOG_ERROR("MPD connection failed");
-          return 1;
-      }
-      LOG_INFO("MPD client initialized and connected successfully");
-
-      // 1. List all folders (playlists)
-      char** folders = NULL;
-      int folder_count = 0;
-      LOG_INFO("Listing all folders...");
-      bool list_result = mpd_client_list_folders(&folders, &folder_count);
-      if (list_result) {
-          LOG_INFO("=== Available Playlists ===");
-          for (int i = 0; i < folder_count; i++) {
-              LOG_INFO("%d: %s", i + 1, folders[i]);
+      else {
+          // Initialize and connect
+          LOG_INFO("Initializing MPD client...");
+          if (!mpd_client_init()) {
+              LOG_ERROR("MPD client initialization failed");
+              return 1;
           }
-      }
-      LOG_INFO("Folder listing completed. Found %d folders", folder_count);
-
-      // 2. Switch to the first folder playlist and play
-      if (folder_count > 0) {
-          LOG_INFO("=== Switching to playlist: %s ===", folders[0]);
-          if (mpd_client_switch_folder_playlist(folders[0])) {
-              LOG_INFO("Successfully switched playlist, now playing...");
+          LOG_INFO("MPD client initialized successfully");
+          
+          if (!mpd_client_connect("localhost", 6600)) {
+              LOG_ERROR("MPD connection failed");
+              return 1;
           }
-      }
-      LOG_INFO("Playlist switching completed");
+          LOG_INFO("MPD client initialized and connected successfully");
 
-      // 3. Get songs in the current folder
-      if (folder_count > 0) {
-          char** songs = NULL;
-          int song_count = 0;
-          LOG_INFO("Retrieving songs in folder...");
-          LOG_DEBUG("Folder name: %s", folders[0]);
-          bool get_result = mpd_client_get_folder_songs(folders[0], &songs, &song_count);
-          LOG_DEBUG("Song count: %d", song_count);
-          if (get_result) {
-              LOG_INFO("=== Current Playlist Songs ===");
-              if (songs != NULL) {
-                  for (int i = 0; i < song_count; i++) {
-                      if (songs[i] != NULL) {
-                          LOG_INFO("%d: %s", i + 1, songs[i]);
-                          free(songs[i]);
-                      }
-                  }
-                  free(songs);
+          // 1. List all folders (playlists)
+          char** folders = NULL;
+          int folder_count = 0;
+          LOG_INFO("Listing all folders...");
+          bool list_result = mpd_client_list_folders(&folders, &folder_count);
+          if (list_result) {
+              LOG_INFO("=== Available Playlists ===");
+              for (int i = 0; i < folder_count; i++) {
+                  LOG_INFO("%d: %s", i + 1, folders[i]);
               }
           }
-          LOG_INFO("Song retrieval completed. Found %d songs", song_count);
+          LOG_INFO("Folder listing completed. Found %d folders", folder_count);
+
+          // 2. Switch to the first folder playlist and play
+          if (folder_count > 0) {
+              LOG_INFO("=== Switching to playlist: %s ===", folders[0]);
+              if (mpd_client_switch_folder_playlist(folders[0])) {
+                  LOG_INFO("Successfully switched playlist, now playing...");
+              }
+          }
+          LOG_INFO("Playlist switching completed");
+
+          // 3. Get songs in the current folder
+          if (folder_count > 0) {
+              char** songs = NULL;
+              int song_count = 0;
+              LOG_INFO("Retrieving songs in folder...");
+              LOG_DEBUG("Folder name: %s", folders[0]);
+              bool get_result = mpd_client_get_folder_songs(folders[0], &songs, &song_count);
+              LOG_DEBUG("Song count: %d", song_count);
+              if (get_result) {
+                  LOG_INFO("=== Current Playlist Songs ===");
+                  if (songs != NULL) {
+                      for (int i = 0; i < song_count; i++) {
+                          if (songs[i] != NULL) {
+                              LOG_INFO("%d: %s", i + 1, songs[i]);
+                              free(songs[i]);
+                          }
+                      }
+                      free(songs);
+                  }
+              }
+              LOG_INFO("Song retrieval completed. Found %d songs", song_count);
+          }
+          LOG_INFO("MPD client deinitialized");
       }
-      LOG_INFO("MPD client deinitialized");
   }
   /*Initialize LVGL*/
   lv_init();
