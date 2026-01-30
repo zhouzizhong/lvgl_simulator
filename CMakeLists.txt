@@ -22,6 +22,8 @@ include_directories(${PROJECT_SOURCE_DIR}/third_party/lvgl)
 # 第三方库配置
 add_subdirectory(third_party/id3v2lib-dev)
 add_subdirectory(third_party/lvgl)
+add_subdirectory(third_party/curl)
+add_subdirectory(third_party/json-c-master)
 
 # 收集所有源文件（排除第三方库和测试文件）
 file(GLOB_RECURSE LIB_SRCS
@@ -40,6 +42,8 @@ add_library(lvglgui SHARED ${LIB_SRCS})
 target_link_libraries(lvglgui PRIVATE
     id3v2lib
     lvgl
+    curl
+    json-c
     ${SDL2_LIBRARIES}
     pthread
     ws2_32
