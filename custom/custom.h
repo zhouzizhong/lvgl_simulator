@@ -12,6 +12,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "lvgl.h"
+#include "gui_guider.h"
 
     LV_FONT_DECLARE(lv_font_MyPingFangSC_Semibold_20)
     LV_FONT_DECLARE(lv_font_MyPingFangSC_Semibold_18)
@@ -89,6 +91,11 @@ extern "C" {
     #define BT_CONNECT_PAGE 16
     /* 页面栈最大深度 */
     #define PAGE_STACK_SIZE 20
+
+    /* 开机登录流程相关 */
+    #define BOOT_LOGIN_SUCCESS 0        // 开机登录成功
+    #define BOOT_NETWORK_ERROR 1        // 网络连接错误
+    #define BOOT_LOGIN_EXPIRED 2        // 登录信息过期
 
 /**********************
  *      TYPEDEFS
@@ -304,6 +311,9 @@ extern "C" {
     extern playlist_t g_recent_playlist; // 最近熏听
     extern playlist_t g_my_playlist;     // 我的听单
 
+    /* 开机流程相关 */
+    extern int boot_toast_showed;
+
     void custom_init(lv_ui* ui);
 
     /* 显示Toast*/
@@ -331,4 +341,4 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#endif /* EVENT_CB_H_ */
+#endif /* __CUSTOM_H_ */

@@ -64,72 +64,67 @@ int lvglui_init(int argc, char** argv)
 {
   // Parse command line arguments
   if (argc > 1) {
-      if (strcmp(argv[1], "network") == 0) {
-          LOG_INFO("=== Network Module Test ===");
-          test_network();
+      // Initialize and connect
+      LOG_INFO("Initializing MPD client...");
+      if (!mpd_client_init()) {
+          LOG_ERROR("MPD client initialization failed");
+          return 1;
       }
-      else {
-          // Initialize and connect
-          LOG_INFO("Initializing MPD client...");
-          if (!mpd_client_init()) {
-              LOG_ERROR("MPD client initialization failed");
-              return 1;
-          }
-          LOG_INFO("MPD client initialized successfully");
-          
-          if (!mpd_client_connect("localhost", 6600)) {
-              LOG_ERROR("MPD connection failed");
-              return 1;
-          }
-          LOG_INFO("MPD client initialized and connected successfully");
+      LOG_INFO("MPD client initialized successfully");
 
-          // 1. List all folders (playlists)
-          char** folders = NULL;
-          int folder_count = 0;
-          LOG_INFO("Listing all folders...");
-          bool list_result = mpd_client_list_folders(&folders, &folder_count);
-          if (list_result) {
-              LOG_INFO("=== Available Playlists ===");
-              for (int i = 0; i < folder_count; i++) {
-                  LOG_INFO("%d: %s", i + 1, folders[i]);
-              }
-          }
-          LOG_INFO("Folder listing completed. Found %d folders", folder_count);
+      if (!mpd_client_connect("localhost", 6600)) {
+          LOG_ERROR("MPD connection failed");
+          return 1;
+      }
+      LOG_INFO("MPD client initialized and connected successfully");
 
-          // 2. Switch to the first folder playlist and play
-          if (folder_count > 0) {
-              LOG_INFO("=== Switching to playlist: %s ===", folders[0]);
-              if (mpd_client_switch_folder_playlist(folders[0])) {
-                  LOG_INFO("Successfully switched playlist, now playing...");
-              }
+      // 1. List all folders (playlists)
+      char** folders = NULL;
+      int folder_count = 0;
+      LOG_INFO("Listing all folders...");
+      bool list_result = mpd_client_list_folders(&folders, &folder_count);
+      if (list_result) {
+          LOG_INFO("=== Available Playlists ===");
+          for (int i = 0; i < folder_count; i++) {
+              LOG_INFO("%d: %s", i + 1, folders[i]);
           }
-          LOG_INFO("Playlist switching completed");
+      }
+      LOG_INFO("Folder listing completed. Found %d folders", folder_count);
 
-          // 3. Get songs in the current folder
-          if (folder_count > 0) {
-              char** songs = NULL;
-              int song_count = 0;
-              LOG_INFO("Retrieving songs in folder...");
-              LOG_DEBUG("Folder name: %s", folders[0]);
-              bool get_result = mpd_client_get_folder_songs(folders[0], &songs, &song_count);
-              LOG_DEBUG("Song count: %d", song_count);
-              if (get_result) {
-                  LOG_INFO("=== Current Playlist Songs ===");
-                  if (songs != NULL) {
-                      for (int i = 0; i < song_count; i++) {
-                          if (songs[i] != NULL) {
-                              LOG_INFO("%d: %s", i + 1, songs[i]);
-                              free(songs[i]);
-                          }
+      // 2. Switch to the first folder playlist and play
+      if (folder_count > 0) {
+          LOG_INFO("=== Switching to playlist: %s ===", folders[0]);
+          if (mpd_client_switch_folder_playlist(folders[0])) {
+              LOG_INFO("Successfully switched playlist, now playing...");
+          }
+      }
+      LOG_INFO("Playlist switching completed");
+
+      // 3. Get songs in the current folder
+      if (folder_count > 0) {
+          char** songs = NULL;
+          int song_count = 0;
+          LOG_INFO("Retrieving songs in folder...");
+          LOG_DEBUG("Folder name: %s", folders[0]);
+          bool get_result = mpd_client_get_folder_songs(folders[0], &songs, &song_count);
+          LOG_DEBUG("Song count: %d", song_count);
+          if (get_result) {
+              LOG_INFO("=== Current Playlist Songs ===");
+              if (songs != NULL) {
+                  for (int i = 0; i < song_count; i++) {
+                      if (songs[i] != NULL) {
+                          LOG_INFO("%d: %s", i + 1, songs[i]);
+                          free(songs[i]);
                       }
-                      free(songs);
                   }
+                  free(songs);
               }
-              LOG_INFO("Song retrieval completed. Found %d songs", song_count);
           }
-          LOG_INFO("MPD client deinitialized");
+          LOG_INFO("Song retrieval completed. Found %d songs", song_count);
       }
+      LOG_INFO("MPD client deinitialized");
   }
+
   /*Initialize LVGL*/
   lv_init();
   /*Initialize the display, and the input devices*/
@@ -138,6 +133,42 @@ int lvglui_init(int argc, char** argv)
   display_init();
   /*Setup the UI*/
   setup_ui(&guider_ui);
+
+  /* 当前播放歌曲信息初始化 */
+  strcpy(g_current_play_data.song_name, "default-song-name");
+  strcpy(g_current_play_data.album_name, "default-album-name");
+  strcpy(g_current_play_data.cover_path, "/imgs/local_audio_icon.png");
+  g_current_play_data.total_duration = 180;
+  g_current_play_data.play_status = PLAY_STATUS_STOPPED;
+  g_current_play_data.current_position = 0;
+  g_current_play_data.song_index = 0;
+
+  /* 当前设备信息初始化 */
+  strcpy(g_current_device_info.software_version, "1.0.1");
+  strcpy(g_current_device_info.firmware_version, "1.0.1");
+  strcpy(g_current_device_info.latest_version, "当前已是最新版本");
+  strcpy(g_current_device_info.device_name, "default device_name");
+  strcpy(g_current_device_info.model_name, "default device_model");
+  strcpy(g_current_device_info.device_id, "default device_id");
+  strcpy(g_current_device_info.device_sn, "default device_sn");
+  strcpy(g_current_device_info.total_storage, "30GB");
+  strcpy(g_current_device_info.free_storage, "15GB");
+  strcpy(g_current_device_info.system_storage, "系统文件 5.1GB");
+  strcpy(g_current_device_info.audio_storage, "音频 8.8GB");
+  strcpy(g_current_device_info.cache_storage, "缓存 1.1GB");
+  g_current_device_info.total_storage_int = 30LL * 1024 * 1024 * 1024;
+  g_current_device_info.free_storage_int = 15LL * 1024 * 1024 * 1024;
+  g_current_device_info.system_storage_int = (long long)(5.1 * 1024 * 1024 * 1024);
+  g_current_device_info.audio_storage_int = (long long)(8.8 * 1024 * 1024 * 1024);
+  g_current_device_info.cache_storage_int = (long long)(1.1 * 1024 * 1024 * 1024);
+
+  /* 当前用户信息初始化 */
+  strcpy(g_current_user_info.user_phone, "default user_phone");
+  strcpy(g_current_user_info.user_vip_status, "default user_vip_status");
+  strcpy(g_current_user_info.user_vip_expire, "default user_vip_expire");
+  /* 账号登录流程*/
+  boot_toast_showed = boot_login();
+  /* 初始化自定义UI组件 */
   custom_init(&guider_ui);
   events_init(&guider_ui);
 

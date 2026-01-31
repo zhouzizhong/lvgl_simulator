@@ -11,8 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lvgl.h"
-#include "gui_guider.h"
 #include "data_manager.h"
 #include "custom.h"
 #include "page_manager.h"

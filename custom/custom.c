@@ -109,6 +109,9 @@ playlist_t g_today_playlist = { 0 };  // 今日熏听
 playlist_t g_recent_playlist = { 0 }; // 最近熏听
 playlist_t g_my_playlist = { 0 };     // 我的听单
 
+/* 开机流程相关 */
+int boot_toast_showed = -1;
+
 /**********************
  *  STATIC VARIABLES
  **********************/
@@ -400,38 +403,6 @@ void custom_init(lv_ui *ui)
 {
     /* 初始化PNG解码器 */
     lv_lodepng_init();
-    /* 当前播放歌曲信息初始化 */
-    strcpy(g_current_play_data.song_name, "default-song-name");
-    strcpy(g_current_play_data.album_name, "default-album-name");
-    strcpy(g_current_play_data.cover_path, "/imgs/local_audio_icon.png");
-    g_current_play_data.total_duration = 180;
-    g_current_play_data.play_status = PLAY_STATUS_STOPPED;
-    g_current_play_data.current_position = 0;
-    g_current_play_data.song_index = 0;
-
-    /* 当前设备信息初始化 */
-    strcpy(g_current_device_info.software_version, "1.0.1");
-    strcpy(g_current_device_info.firmware_version, "1.0.1");
-    strcpy(g_current_device_info.latest_version, "当前已是最新版本");
-    strcpy(g_current_device_info.device_name, "default device_name");
-    strcpy(g_current_device_info.model_name, "default device_model");
-    strcpy(g_current_device_info.device_id, "default device_id");
-    strcpy(g_current_device_info.device_sn, "default device_sn");
-    strcpy(g_current_device_info.total_storage, "30GB");
-    strcpy(g_current_device_info.free_storage, "15GB");
-    strcpy(g_current_device_info.system_storage, "系统文件 5.1GB");
-    strcpy(g_current_device_info.audio_storage, "音频 8.8GB");
-    strcpy(g_current_device_info.cache_storage, "缓存 1.1GB");
-    g_current_device_info.total_storage_int = 30LL * 1024 * 1024 * 1024;
-    g_current_device_info.free_storage_int = 15LL * 1024 * 1024 * 1024;
-    g_current_device_info.system_storage_int = (long long)(5.1 * 1024 * 1024 * 1024);
-    g_current_device_info.audio_storage_int = (long long)(8.8 * 1024 * 1024 * 1024);
-    g_current_device_info.cache_storage_int = (long long)(1.1 * 1024 * 1024 * 1024);
-
-    /* 当前用户信息初始化 */
-    strcpy(g_current_user_info.user_phone, "default user_phone");
-    strcpy(g_current_user_info.user_vip_status, "default user_vip_status");
-    strcpy(g_current_user_info.user_vip_expire, "default user_vip_expire");
 
     /* 初始化孩子信息库 */
     init_child_info_repo();
@@ -470,6 +441,17 @@ void custom_init(lv_ui *ui)
     ui_load_scr_animation(&guider_ui, &guider_ui.home_page, guider_ui.home_page_del, &guider_ui.startup_page_del, setup_scr_home_page, LV_SCR_LOAD_ANIM_FADE_ON, LOAD_ANIM_TIME, 1000, false, false);
     update_home_page_content(ui);
     g_current_page = HOME_PAGE;
+
+    if (boot_toast_showed == BOOT_LOGIN_SUCCESS)
+    {
+        show_toast("账号登录成功", 2000);
+    }else if (boot_toast_showed == BOOT_LOGIN_EXPIRED)
+    {
+        show_toast("登录信息已过期", 2000);
+    }else if (boot_toast_showed == BOOT_NETWORK_ERROR)
+    {
+        show_toast("网络连接失败", 2000);
+    }
 }
 void show_toast(const char* message, uint32_t duration_ms)
 {
